@@ -1,0 +1,21 @@
+Consequent write test:
+
+Mon Apr 15 15:39:10 UTC 2013
+10000000+0 records in
+10000000+0 records out
+5120000000 bytes (5.1 GB) copied, 72.0476 s, 71.1 MB/s
+Mon Apr 15 15:40:26 UTC 2013
+
+Total time consumed: 76 seconds, throughput: 64.3 MB/s
+
+
+Consequent read test: 
+Mon Apr 15 15:46:14 UTC 2013
+10000000+0 records in
+10000000+0 records out
+5120000000 bytes (5.1 GB) copied, 99.4279 s, 51.5 MB/s
+Mon Apr 15 15:47:53 UTC 2013
+
+Total time consumed: 99 seconds, throughput: 49.37 MB/s
+
+
