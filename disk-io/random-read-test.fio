@@ -1,0 +1,7 @@
+; random read of 128mb of data
+
+[random-read]
+rw=randread
+size=128m
+directory=/mnt/persistent/data
+
