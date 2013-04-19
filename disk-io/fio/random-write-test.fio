@@ -1,0 +1,6 @@
+; random write of 1024mb of data
+
+[random-read]
+rw=randwrite
+size=1024m
+directory=/mnt/persistent/data
