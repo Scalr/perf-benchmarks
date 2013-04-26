@@ -2,6 +2,6 @@
 
 [random-read]
 rw=randread
-size=128m
+size=4096m
 directory=/mnt/persistent/data
 
