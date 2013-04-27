@@ -1,4 +1,4 @@
-; random write of 1024mb of data
+; random write of 4096mb of data
 
 [random-read]
 rw=randwrite

@@ -1,4 +1,4 @@
-; random read of 128mb of data
+; random read of 4096mb of data
 
 [random-read]
 rw=randread
