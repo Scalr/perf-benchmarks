@@ -16,6 +16,7 @@ fi
 
 truncate -s $FILE_SIZE $SOURCE
 
+echo "# cross-region io benchmark" >> $LOG
 echo `/bin/date` >> $LOG
 
 if [ CLOUD=="ec2" ]; then
