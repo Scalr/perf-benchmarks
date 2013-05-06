@@ -4,8 +4,8 @@ USER=$1
 DEST_IP=$2
 FILE_SIZE=$3
 SSH_KEY=$HOME/.ssh/id_rsa
-SOURCE=/tmp/io_benchmarks.file
-DEST=/tmp/io_benchmarks.file
+SOURCE=/tmp/io_benchmarks
+DEST=/tmp/io_benchmarks
 NETCAT_PORT=666
 LOG=log/region-io
 
