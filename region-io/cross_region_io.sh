@@ -16,6 +16,8 @@ fi
 truncate -s $FILE_SIZE $SOURCE
 
 echo `/bin/date` >> $LOG
+echo `/usr/bin/ec2metadata  | grep 'availability-zone'` >> $LOG
+echo `/usr/bin/ec2metadata  | grep 'instance-type'` >> $LOG
 
 echo -e "File size" $FILE_SIZE "\n" >> $LOG
 
