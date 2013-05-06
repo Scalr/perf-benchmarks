@@ -20,7 +20,12 @@ echo `/bin/date` >> $LOG
 
 if [ CLOUD=="ec2" ]; then
     echo `/usr/bin/ec2metadata | grep 'availability-zone'` >> $LOG
-    echo `/usr/bin/ec2metadata | grep 'instance-type'` >> $LOG
+    echo `/usr/bin/ec2metadata | grep 'machine'` >> $LOG
+fi
+
+if [ CLOUD=="gce" ]; then
+    echo `/usr/bin/gcutil getinstance $HOSTNAME | grep 'zone'` >> $LOG
+    echo `/usr/bin/gcutil getinstance $HOSTNAME | grep 'zone'` >> $LOG
 fi
 
 echo -e "File size" $FILE_SIZE "\n" >> $LOG
