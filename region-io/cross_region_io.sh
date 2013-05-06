@@ -19,12 +19,12 @@ truncate -s $FILE_SIZE $SOURCE
 echo "# cross-region io benchmark" >> $LOG
 echo `/bin/date` >> $LOG
 
-if [ CLOUD=="ec2" ]; then
+if [ "$CLOUD" == "ec2" ]; then
     echo `/usr/bin/ec2metadata | grep 'availability-zone'` >> $LOG
     echo `/usr/bin/ec2metadata | grep 'machine'` >> $LOG
 fi
 
-if [ CLOUD=="gce" ]; then
+if [ "$CLOUD" == "gce" ]; then
     echo `/usr/bin/gcutil getinstance $HOSTNAME | grep 'zone'` >> $LOG
     echo `/usr/bin/gcutil getinstance $HOSTNAME | grep 'zone'` >> $LOG
 fi
