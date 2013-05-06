@@ -7,6 +7,7 @@ NETCAT_PORT=$4
 SSH_KEY=$HOME/.ssh/id_rsa
 SOURCE=/tmp/io_benchmarks
 DEST=$5
+CLOUD=$6
 LOG=log/region-io
 
 if [ ! -d log ]; then
@@ -16,8 +17,11 @@ fi
 truncate -s $FILE_SIZE $SOURCE
 
 echo `/bin/date` >> $LOG
-echo `/usr/bin/ec2metadata  | grep 'availability-zone'` >> $LOG
-echo `/usr/bin/ec2metadata  | grep 'instance-type'` >> $LOG
+
+if [ CLOUD=="ec2" ]; then
+    echo `/usr/bin/ec2metadata | grep 'availability-zone'` >> $LOG
+    echo `/usr/bin/ec2metadata | grep 'instance-type'` >> $LOG
+fi
 
 echo -e "File size" $FILE_SIZE "\n" >> $LOG
 
