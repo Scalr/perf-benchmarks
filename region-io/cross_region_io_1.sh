@@ -10,4 +10,4 @@ sudo nc -l $NETCAT_PORT > $DEST
 sudo apt-get install -y iperf
 
 echo 'run iperf server on destination server'
-/usr/bin/iperf -s -p 12345
+iperf -s -p 12345
