@@ -42,11 +42,11 @@ fi
 echo "File size:" >> $LOG
 echo $FILE_SIZE >> $LOG
 
-echo "nc:" >> $LOG
-{ /usr/bin/time -f "%E Elapsed\n%U User\n%S System\n%M Memory\n%P Percentage of the CPU\n" cat $SOURCE | nc $DEST_IP $NETCAT_PORT -q 0; } 2>>$LOG
+echo "netcat:" >> $LOG
+{ /usr/bin/time -f "%E Elapsed\n%U User\n%S System\n%M Memory\n%P Percentage of the CPU" cat $SOURCE | nc $DEST_IP $NETCAT_PORT -q 0; } 2>>$LOG
 
 echo "scp:" >> $LOG
-{ /usr/bin/time -f "%E Elapsed\n%U User\n%S System\n%M Memory\n%P Percentage of the CPU\n" scp -i $SSH_KEY $SOURCE $USER@$DEST_IP:$DEST; } 2>>$LOG
+{ /usr/bin/time -f "%E Elapsed\n%U User\n%S System\n%M Memory\n%P Percentage of the CPU" scp -i $SSH_KEY -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking $SOURCE $USER@$DEST_IP:$DEST; } 2>>$LOG
 
 echo "iperf:" >> $LOG
 iperf -c $DEST_IP -p 12345 -t 60 | grep '/sec' >> $LOG
