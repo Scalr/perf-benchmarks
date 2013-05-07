@@ -8,13 +8,7 @@ FILE_SIZE=$5
 CLOUD=$6
 SOURCE=/tmp/io_benchmarks
 DEST=/dev/null
-LOG_DIR=$HOME/perf-benchmarks/region-io/results
-
-if [ ! -d $LOG_DIR ]; then
-    mkdir $LOG_DIR
-fi
-
-truncate -s $FILE_SIZE $SOURCE
+RES_DIR=$HOME/perf-benchmarks/region-io/results
 
 if [ "$CLOUD" == "ec2" ]; then
     set -- `ec2metadata | grep availability-zone`
@@ -35,10 +29,22 @@ if [ "$CLOUD" == "gce" ]; then
     TYPE=$2
 fi
 
-LOG_FILE=$CLOUD-region-io-$TYPE-$FROM-$TO-`date +"%Y-%m-%d-%H:%M:%S"`
-LOG=$LOG_DIR/$LOG_FILE
+if [ "$CLOUD" == "" ]; then
+    FROM="unknown"
+    TO="unknow"
+    TYPE="unkonw"
+fi
 
-echo "# cross-region io benchmark" >> $LOG
+LOG_DIR=$RES_DIR/$CLOUD/$TYPE
+
+if [ ! -d $LOG_DIR ]; then
+    mkdir -p $LOG_DIR
+fi
+
+LOG_NAME=`date +"%Y-%m-%d-%H:%M:%S"`-network-io-$FROM-$TO
+LOG=$LOG_DIR/$LOG_NAME
+
+echo "# network-io" >> $LOG
 echo `date +%s` >> $LOG
 echo `date` >> $LOG
 
@@ -52,24 +58,32 @@ echo $TYPE >> $LOG
 echo "File size:" >> $LOG
 echo $FILE_SIZE >> $LOG
 
+truncate -s $FILE_SIZE $SOURCE
+
 echo "netcat:" >> $LOG
 { /usr/bin/time -f "%E Elapsed\n%U User\n%S System\n%M Memory\n%P Percentage of the CPU" cat $SOURCE | nc $DEST_IP $NETCAT_PORT -q 0; } 2>>$LOG
 
 echo "scp:" >> $LOG
 { /usr/bin/time -f "%E Elapsed\n%U User\n%S System\n%M Memory\n%P Percentage of the CPU" scp -i $SSH_KEY $SOURCE $USER@$DEST_IP:$DEST; } 2>>$LOG
 
+ssh -i $HOME/.ssh/id_rsa -l $USER $DEST_IP 'iperf -s -p 12345 -D'
+
 echo "iperf:" >> $LOG
-iperf -c $DEST_IP -p 12345 -t 60 | grep '/sec' >> $LOG
+iperf -c $DEST_IP -p 12345 -t 30 | grep '/sec' >> $LOG
+
+echo "iperf dualtest:" >> $LOG
+iperf -c $DEST_IP -p 12345 -t 30 -d | grep '/sec' >> $LOG
+
+echo "iperf 4 parallel:" >> $LOG
+iperf -c $DEST_IP -p 12345 -t 30 -P 4 | grep '/sec' >> $LOG
 
 cd $LOG_DIR
 
-#git config --global user.name "Roma Koshel"
-#git config --global user.email "roman@scalr.com"
-git fetch origin
-git pull origin master
-git add $LOG
-git commit -m "$LOG_FILE"
-git push -u origin master
+#git fetch origin
+#git pull origin master
+#git add $LOG
+#git commit -m "$LOG_FILE"
+#git push -u origin master
 
 ssh -i $SSH_KEY -l $USER $DEST_IP 'sudo killall -9 nc'
 ssh -i $SSH_KEY -l $USER $DEST_IP 'sudo killall -9 iperf'
