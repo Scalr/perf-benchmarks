@@ -9,7 +9,8 @@ CLOUD=$6
 SOURCE=/tmp/io_benchmarks
 DEST=/dev/null
 LOG_DIR=$HOME/perf-benchmarks/region-io/results
-LOG=$LOG_DIR/region-io-`date +"%Y-%m-%d-%H:%M:%S"`
+LOG_FILE=region-io-`date +"%Y-%m-%d-%H:%M:%S"`
+LOG=$LOG_DIR/$LOG_FILE
 
 if [ ! -d $LOG_DIR ]; then
     mkdir $LOG_DIR
@@ -51,6 +52,11 @@ echo "scp:" >> $LOG
 echo "iperf:" >> $LOG
 iperf -c $DEST_IP -p 12345 -t 60 | grep '/sec' >> $LOG
 
+git fetch origin
+git pull origin master
+git add $LOG
+git commit -m "$LOG"
+git push -u origin master
 
 ssh -i $SSH_KEY -l $USER $DEST_IP 'sudo killall -9 nc'
 ssh -i $SSH_KEY -l $USER $DEST_IP 'sudo killall -9 iperf'
