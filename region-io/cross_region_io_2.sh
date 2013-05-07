@@ -35,7 +35,7 @@ if [ "$CLOUD" == "gce" ]; then
     TYPE=$2
 fi
 
-LOG_FILE=$CLOUD-region-io-`date +"%Y-%m-%d-%H:%M:%S"-$FROM-$TO-$TYPE`
+LOG_FILE=$CLOUD-region-io-$TYPE-$FROM-$TO-`date +"%Y-%m-%d-%H:%M:%S"`
 LOG=$LOG_DIR/$LOG_FILE
 
 echo "# cross-region io benchmark" >> $LOG
