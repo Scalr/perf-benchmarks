@@ -26,24 +26,29 @@ if [ "$CLOUD" == "ec2" ]; then
     echo `ec2metadata | grep 'availability-zone'` >> $LOG
     echo 'To:' >> $LOG
     ssh -i $HOME/.ssh/id_rsa -l root $DEST_IP 'ec2metadata | grep availability-zone' >> $LOG
-    echo 'Instance type:' >> $LOG
+    echo 'Type:' >> $LOG
     echo `ec2metadata | grep 'instance-type'` >> $LOG
 fi
 
 if [ "$CLOUD" == "gce" ]; then
+    echo 'From:' >> $LOG
     echo `gcutil getinstance $HOSTNAME | grep 'zone'` >> $LOG
-    echo `gcutil getinstance $HOSTNAME | grep 'zone'` >> $LOG
+    echo 'To:' >> $LOG
+    ssh -i $HOME/.ssh/id_rsa -l root $DEST_IP 'gcutil getinstance $HOSTNAME | grep zone' >> $LOG
+    echo 'Type:' >> $LOG
+    echo `gcutil getinstance $HOSTNAME | grep 'machine'` >> $LOG
 fi
 
-echo -e "File size" $FILE_SIZE "\n" >> $LOG
+echo "File size:" >> $LOG
+echo $FILE_SIZE >> $LOG
 
-echo "nc" >> $LOG
+echo "nc:" >> $LOG
 { /usr/bin/time -f "%E Elapsed\n%U User\n%S System\n%M Memory\n%P Percentage of the CPU\n" cat $SOURCE | nc $DEST_IP $NETCAT_PORT -q 0; } 2>>$LOG
 
-echo "scp" >> $LOG
+echo "scp:" >> $LOG
 { /usr/bin/time -f "%E Elapsed\n%U User\n%S System\n%M Memory\n%P Percentage of the CPU\n" scp -i $SSH_KEY $SOURCE $USER@$DEST_IP:$DEST; } 2>>$LOG
 
-echo "iperf" >> $LOG
+echo "iperf:" >> $LOG
 iperf -c $DEST_IP -p 12345 -t 60 | grep '/sec' >> $LOG
 
 
