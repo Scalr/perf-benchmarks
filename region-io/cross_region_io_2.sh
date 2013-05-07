@@ -22,8 +22,12 @@ echo `date +%s` >> $LOG
 echo `date` >> $LOG
 
 if [ "$CLOUD" == "ec2" ]; then
+    echo 'From:' >> $LOG
     echo `ec2metadata | grep 'availability-zone'` >> $LOG
-    echo `ec2metadata | grep 'machine'` >> $LOG
+    echo 'To:' >> $LOG
+    ssh -i $HOME/.ssh/id_rsa -l root $DEST_IP 'ec2metadata | grep availability-zone' >> $LOG
+    echo 'Instance type:' >> $LOG
+    echo `ec2metadata | grep 'instance-type'` >> $LOG
 fi
 
 if [ "$CLOUD" == "gce" ]; then
