@@ -14,6 +14,14 @@ if [ ! -d results ]; then
     mkdir results
 fi
 
+# debug
+echo $SSH_KEY
+echo $USER
+echo $DEST_IP
+echo $NETCAT_PORT
+echo $FILE_SIZE
+echo $CLOUD
+
 truncate -s $FILE_SIZE $SOURCE
 
 echo "# cross-region io benchmark" >> $LOG
@@ -37,9 +45,6 @@ echo "nc" >> $LOG
 
 echo "scp" >> $LOG
 { /usr/bin/time -f "%E Elapsed\n%U User\n%S System\n%M Memory\n%P Percentage of the CPU\n" scp -i $SSH_KEY $SOURCE $USER@$DEST_IP:$DEST; } 2>>$LOG
-
-# FIXME with chef
-sudo apt-get install -y iperf
 
 echo "iperf" >> $LOG
 iperf -c $DEST_IP -p 12345 -t 60 | grep '/sec' >> $LOG
