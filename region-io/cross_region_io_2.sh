@@ -19,7 +19,7 @@ truncate -s $FILE_SIZE $SOURCE
 if [ "$CLOUD" == "ec2" ]; then
     set -- `ec2metadata | grep availability-zone`
     FROM=$2
-    set -- ssh -i $HOME/.ssh/id_rsa -l $USER $DEST_IP 'ec2metadata | grep availability-zone'
+    set -- `ssh -i $HOME/.ssh/id_rsa -l $USER $DEST_IP 'ec2metadata | grep availability-zone'`
     TO=$2
     set -- `ec2metadata | grep instance-type`
     TYPE=$2
