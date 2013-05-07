@@ -8,19 +8,12 @@ FILE_SIZE=$5
 CLOUD=$6
 SOURCE=/tmp/io_benchmarks
 DEST=/dev/null
-LOG=results/region-io-`date +"%Y-%m-%d-%H:%M:%S"`
+LOG_DIR=$HOME/perf-benchmarks/region-io/results
+LOG=$LOG_DIR/region-io-`date +"%Y-%m-%d-%H:%M:%S"`
 
-if [ ! -d results ]; then
-    mkdir results
+if [ ! -d $LOG_DIR ]; then
+    mkdir $LOG_DIR
 fi
-
-# debug
-echo $SSH_KEY
-echo $USER
-echo $DEST_IP
-echo $NETCAT_PORT
-echo $FILE_SIZE
-echo $CLOUD
 
 truncate -s $FILE_SIZE $SOURCE
 
