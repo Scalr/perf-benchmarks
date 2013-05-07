@@ -67,6 +67,7 @@ echo "scp:" >> $LOG
 
 echo "iperf ..."
 echo -e "\tstarting server ..."
+sudo killall -9 iperf
 ssh -i $SSH_KEY -l $USER $DEST_IP 'sudo killall -9 iperf &>/dev/null'
 ssh -i $SSH_KEY -l $USER $DEST_IP 'iperf -s -p 12345 &>/dev/null &' &
 
