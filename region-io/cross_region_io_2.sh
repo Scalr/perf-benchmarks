@@ -23,12 +23,18 @@ echo `date +%s` >> $LOG
 echo `date` >> $LOG
 
 if [ "$CLOUD" == "ec2" ]; then
+    set -- `ec2metadata | grep availability-zone`
+    FROM=$2
+    set -- ssh -i $HOME/.ssh/id_rsa -l $USER $DEST_IP 'ec2metadata | grep availability-zone'
+    TO=$2
+    set -- `ec2metadata | grep instance-type`
+    TYPE=$2
     echo 'From:' >> $LOG
-    echo `ec2metadata | grep 'availability-zone'` >> $LOG
+    $FROM >> $LOG
     echo 'To:' >> $LOG
-    ssh -i $HOME/.ssh/id_rsa -l $USER $DEST_IP 'ec2metadata | grep availability-zone' >> $LOG
+    $TO >> $LOG
     echo 'Type:' >> $LOG
-    echo `ec2metadata | grep 'instance-type'` >> $LOG
+    $TYPE >> $LOG
 fi
 
 if [ "$CLOUD" == "gce" ]; then
@@ -53,10 +59,12 @@ echo "iperf:" >> $LOG
 iperf -c $DEST_IP -p 12345 -t 60 | grep '/sec' >> $LOG
 
 cd $LOG_DIR
+mv $LOG_FILE $LOG_FILE-$FROM-$TO-$TYPE
+
 git config --global user.name "Roma Koshel"
 git config --global user.email "roman@scalr.com"
 git add $LOG
-git commit -m "$LOG_FILE"
+git commit -m "$LOG_FILE-$FROM-$TO-$TYPE"
 git push -u origin master
 
 ssh -i $SSH_KEY -l $USER $DEST_IP 'sudo killall -9 nc'
