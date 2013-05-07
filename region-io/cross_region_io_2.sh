@@ -9,18 +9,12 @@ CLOUD=$6
 SOURCE=/tmp/io_benchmarks
 DEST=/dev/null
 LOG_DIR=$HOME/perf-benchmarks/region-io/results
-LOG_FILE=region-io-`date +"%Y-%m-%d-%H:%M:%S"`
-LOG=$LOG_DIR/$LOG_FILE
 
 if [ ! -d $LOG_DIR ]; then
     mkdir $LOG_DIR
 fi
 
 truncate -s $FILE_SIZE $SOURCE
-
-echo "# cross-region io benchmark" >> $LOG
-echo `date +%s` >> $LOG
-echo `date` >> $LOG
 
 if [ "$CLOUD" == "ec2" ]; then
     set -- `ec2metadata | grep availability-zone`
@@ -29,22 +23,30 @@ if [ "$CLOUD" == "ec2" ]; then
     TO=$2
     set -- `ec2metadata | grep instance-type`
     TYPE=$2
-    echo 'From:' >> $LOG
-    $FROM >> $LOG
-    echo 'To:' >> $LOG
-    $TO >> $LOG
-    echo 'Type:' >> $LOG
-    $TYPE >> $LOG
 fi
 
 if [ "$CLOUD" == "gce" ]; then
-    echo 'From:' >> $LOG
-    echo `gcutil getinstance $HOSTNAME | grep 'zone'` >> $LOG
-    echo 'To:' >> $LOG
-    ssh -i $HOME/.ssh/id_rsa -l $USER $DEST_IP 'gcutil getinstance $HOSTNAME | grep zone' >> $LOG
-    echo 'Type:' >> $LOG
-    echo `gcutil getinstance $HOSTNAME | grep 'machine'` >> $LOG
+    set -- `gcutil getinstance $HOSTNAME | grep 'zone'`
+    FROM=$2
+    set -- `ssh -i $HOME/.ssh/id_rsa -l $USER $DEST_IP 'gcutil getinstance $HOSTNAME | grep zone'`
+    TO=$2
+    set -- `gcutil getinstance $HOSTNAME | grep 'machine'`
+    TYPE=$2
 fi
+
+LOG_FILE=$CLOUD-region-io-`date +"%Y-%m-%d-%H:%M:%S"-$FROM-$TO-$TYPE`
+LOG=$LOG_DIR/$LOG_FILE
+
+echo "# cross-region io benchmark" >> $LOG
+echo `date +%s` >> $LOG
+echo `date` >> $LOG
+
+echo 'From:' >> $LOG
+echo $FROM >> $LOG
+echo 'To:' >> $LOG
+echo $TO >> $LOG
+echo 'Type:' >> $LOG
+echo $TYPE >> $LOG
 
 echo "File size:" >> $LOG
 echo $FILE_SIZE >> $LOG
@@ -59,12 +61,11 @@ echo "iperf:" >> $LOG
 iperf -c $DEST_IP -p 12345 -t 60 | grep '/sec' >> $LOG
 
 cd $LOG_DIR
-mv $LOG_FILE $LOG_FILE-$FROM-$TO-$TYPE
 
 git config --global user.name "Roma Koshel"
 git config --global user.email "roman@scalr.com"
 git add $LOG
-git commit -m "$LOG_FILE-$FROM-$TO-$TYPE"
+git commit -m "$LOG_FILE"
 git push -u origin master
 
 ssh -i $SSH_KEY -l $USER $DEST_IP 'sudo killall -9 nc'
