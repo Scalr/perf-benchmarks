@@ -1,0 +1,25 @@
+# cross-region io benchmark
+1367949608
+Tue May 7 18:00:08 UTC 2013
+From:
+us-west-2b
+To:
+us-west-1c
+Type:
+m1.large
+File size:
+1G
+netcat:
+0:37.42 Elapsed
+0.01 User
+2.45 System
+2672 Memory
+6% Percentage of the CPU
+scp:
+0:40.93 Elapsed
+24.23 User
+4.13 System
+26208 Memory
+69% Percentage of the CPU
+iperf:
+[  3]  0.0-60.0 sec  1.58 GBytes   226 Mbits/sec
