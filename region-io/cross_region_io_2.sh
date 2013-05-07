@@ -27,10 +27,11 @@ fi
 
 if [ "$CLOUD" == "gce" ]; then
     set -- `gcutil getinstance $HOSTNAME | grep 'zone'`
-    FROM=$2
+    FROM=$4
     set -- `ssh -i $HOME/.ssh/id_rsa -l $USER $DEST_IP 'gcutil getinstance $HOSTNAME | grep zone'`
-    TO=$2
+    TO=$4
     set -- `gcutil getinstance $HOSTNAME | grep 'machine'`
+    set -- `echo $4 | tr "/" " "`
     TYPE=$2
 fi
 
