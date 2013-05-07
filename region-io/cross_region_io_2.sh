@@ -52,10 +52,11 @@ echo "scp:" >> $LOG
 echo "iperf:" >> $LOG
 iperf -c $DEST_IP -p 12345 -t 60 | grep '/sec' >> $LOG
 
-git fetch origin
-git pull origin master
+cd $LOG_DIR
+git config --global user.name "Roma Koshel"
+git config --global user.email "roman@scalr.com"
 git add $LOG
-git commit -m "$LOG"
+git commit -m "$LOG_FILE"
 git push -u origin master
 
 ssh -i $SSH_KEY -l $USER $DEST_IP 'sudo killall -9 nc'
