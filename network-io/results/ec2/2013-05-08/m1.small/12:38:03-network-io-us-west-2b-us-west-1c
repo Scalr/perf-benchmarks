@@ -1,0 +1,43 @@
+# network-io
+1368016683
+Wed May 8 12:38:03 UTC 2013
+From:
+us-west-2b
+To:
+us-west-1c
+Type:
+m1.small
+File size:
+5G
+netcat:
+4:32.13 Elapsed
+0.24 User
+14.19 System
+2672 Memory
+scp:
+7:01.94 Elapsed
+125.62 User
+17.40 System
+24192 Memory
+iperf simple mode:
+[  3]  0.0-30.0 sec   336 MBytes  93.8 Mbits/sec
+iperf parallel mode 2:
+[  4]  0.0-30.0 sec   391 MBytes   109 Mbits/sec
+[  3]  0.0-30.0 sec   391 MBytes   109 Mbits/sec
+[SUM]  0.0-30.0 sec   782 MBytes   218 Mbits/sec
+iperf parallel mode 4:
+[  6]  0.0-30.1 sec   250 MBytes  69.8 Mbits/sec
+[  3]  0.0-30.1 sec   216 MBytes  60.1 Mbits/sec
+[  5]  0.0-30.1 sec   187 MBytes  52.2 Mbits/sec
+[  4]  0.0-30.1 sec   233 MBytes  64.8 Mbits/sec
+[SUM]  0.0-30.1 sec   886 MBytes   247 Mbits/sec
+iperf parallel mode 8:
+[  3]  0.0-30.0 sec   106 MBytes  29.7 Mbits/sec
+[  7]  0.0-30.0 sec   196 MBytes  54.7 Mbits/sec
+[  5]  0.0-30.0 sec   177 MBytes  49.3 Mbits/sec
+[ 10]  0.0-30.0 sec   164 MBytes  45.9 Mbits/sec
+[  4]  0.0-30.1 sec   105 MBytes  29.4 Mbits/sec
+[  9]  0.0-30.1 sec   184 MBytes  51.4 Mbits/sec
+[  8]  0.0-30.2 sec  69.9 MBytes  19.4 Mbits/sec
+[  6]  0.0-30.3 sec  82.1 MBytes  22.7 Mbits/sec
+[SUM]  0.0-30.3 sec  1.06 GBytes   300 Mbits/sec
