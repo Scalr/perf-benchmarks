@@ -1,0 +1,43 @@
+# network-io
+1368018840
+Wed May 8 13:14:00 UTC 2013
+From:
+us-central2-a
+To:
+us-central1-a
+Type:
+n1-standard-8-d
+File size:
+5G
+netcat:
+2:09.19 Elapsed
+0.32 User
+22.27 System
+2688 Memory
+scp:
+2:23.45 Elapsed
+73.67 User
+43.40 System
+25872 Memory
+iperf simple mode:
+[  3]  0.0-30.0 sec  1.30 GBytes   371 Mbits/sec
+iperf parallel mode 2:
+[  3]  0.0-30.0 sec  1.00 GBytes   287 Mbits/sec
+[  4]  0.0-30.0 sec  1.01 GBytes   288 Mbits/sec
+[SUM]  0.0-30.0 sec  2.01 GBytes   575 Mbits/sec
+iperf parallel mode 4:
+[  6]  0.0-30.0 sec   592 MBytes   166 Mbits/sec
+[  3]  0.0-30.0 sec   586 MBytes   164 Mbits/sec
+[  4]  0.0-30.0 sec   591 MBytes   165 Mbits/sec
+[  5]  0.0-30.1 sec   581 MBytes   162 Mbits/sec
+[SUM]  0.0-30.1 sec  2.30 GBytes   656 Mbits/sec
+iperf parallel mode 8:
+[ 10]  0.0-30.0 sec   324 MBytes  90.5 Mbits/sec
+[  9]  0.0-30.0 sec   273 MBytes  76.2 Mbits/sec
+[  7]  0.0-30.0 sec   266 MBytes  74.5 Mbits/sec
+[  3]  0.0-30.0 sec   345 MBytes  96.5 Mbits/sec
+[  8]  0.0-30.1 sec   223 MBytes  62.2 Mbits/sec
+[  5]  0.0-30.1 sec   255 MBytes  71.0 Mbits/sec
+[  6]  0.0-30.1 sec   158 MBytes  44.1 Mbits/sec
+[  4]  0.0-30.1 sec   280 MBytes  77.8 Mbits/sec
+[SUM]  0.0-30.1 sec  2.07 GBytes   591 Mbits/sec
