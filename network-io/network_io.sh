@@ -32,14 +32,15 @@ else
     TYPE="unknown"
 fi
 
-DATE=`date +"%Y-%m-%d-%H:%M:%S"`
+DATE=`date +"%Y-%m-%d"`
+TIME=`date +"%H:%M:%S"`
 LOG_DIR=$RES_DIR/$CLOUD/$DATE/$TYPE
 
 if [ ! -d $LOG_DIR ]; then
     mkdir -p $LOG_DIR
 fi
 
-LOG_NAME=network-io-$FROM-$TO
+LOG_NAME=$TIME-network-io-$FROM-$TO
 LOG=$LOG_DIR/$LOG_NAME
 
 echo "# network-io" >> $LOG
@@ -70,21 +71,21 @@ echo "iperf ..."
 echo -e "\tstarting server ..."
 sudo killall -9 iperf
 ssh -i $SSH_KEY -l $USER $DEST_IP 'sudo killall -9 iperf &>/dev/null'
-ssh -i $SSH_KEY -l $USER $DEST_IP 'iperf -s -p 12345 &>/dev/null &' &
+ssh -i $SSH_KEY -l $USER $DEST_IP 'iperf -s -p 1234 &>/dev/null &' &
 
 sleep 1
 
 echo -e "\tsimple mode ..."
 echo "iperf simple mode:" >> $LOG
-iperf -c $DEST_IP -p 12345 -t 30 | grep '/sec' >> $LOG
+iperf -c $DEST_IP -p 1234 -t 30 | grep '/sec' >> $LOG
 
 echo -e "\tdualtest mode ..."
 echo "iperf dualtest:" >> $LOG
-iperf -c $DEST_IP -p 12345 -t 30 -d | grep '/sec' >> $LOG
+iperf -c $DEST_IP -p 1234 -t 30 -d | grep '/sec' >> $LOG
 
 echo -e "\tparallel mode 4 ..."
 echo "iperf parallel mode 4:" >> $LOG
-iperf -c $DEST_IP -p 12345 -t 30 -P 4 | grep '/sec' >> $LOG
+iperf -c $DEST_IP -p 1234 -t 30 -P 4 | grep '/sec' >> $LOG
 
 cd $LOG_DIR
 
