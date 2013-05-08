@@ -32,13 +32,14 @@ else
     TYPE="unknown"
 fi
 
-LOG_DIR=$RES_DIR/$CLOUD/$TYPE
+DATE=`date +"%Y-%m-%d-%H:%M:%S"`
+LOG_DIR=$RES_DIR/$CLOUD/$DATE/$TYPE
 
 if [ ! -d $LOG_DIR ]; then
     mkdir -p $LOG_DIR
 fi
 
-LOG_NAME=`date +"%Y-%m-%d-%H:%M:%S"`-network-io-$FROM-$TO
+LOG_NAME=network-io-$FROM-$TO
 LOG=$LOG_DIR/$LOG_NAME
 
 echo "# network-io" >> $LOG
