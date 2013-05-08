@@ -68,12 +68,7 @@ echo "scp:" >> $LOG
 { /usr/bin/time -f "%E Elapsed\n%U User\n%S System\n%M Memory" scp -i $SSH_KEY $SOURCE $USER@$DEST_IP:$DEST 1>/dev/null ; } 2>>$LOG
 
 echo "iperf ..."
-echo -e "\tstarting server ..."
-sudo killall -9 iperf
-ssh -i $SSH_KEY -l $USER $DEST_IP 'sudo killall -9 iperf &>/dev/null'
-ssh -i $SSH_KEY -l $USER $DEST_IP 'iperf -s -p 1234 &>/dev/null &' &
-
-sleep 1
+sudo killall -9 iperf &>/dev/null
 
 echo -e "\tsimple mode ..."
 echo "iperf simple mode:" >> $LOG
