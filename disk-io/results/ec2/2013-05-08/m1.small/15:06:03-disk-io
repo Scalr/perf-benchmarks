@@ -1,0 +1,144 @@
+
+
+#
+======SIZE-128M===RW-randwrite===BS-4k===IOPS-2000===DEPTH-1======
+#
+name: (g=0): rw=randwrite, bs=4K-4K/4K-4K, ioengine=libaio, iodepth=1
+fio 1.59
+Starting 1 process
+
+
+#
+======SIZE-128M===RW-randwrite===BS-128k===IOPS-2000===DEPTH-1======
+#
+name: (g=0): rw=randwrite, bs=128K-128K/128K-128K, ioengine=libaio, iodepth=1
+fio 1.59
+Starting 1 process
+
+
+#
+======SIZE-128M===RW-randwrite===BS-256k===IOPS-2000===DEPTH-1======
+#
+name: (g=0): rw=randwrite, bs=256K-256K/256K-256K, ioengine=libaio, iodepth=1
+fio 1.59
+Starting 1 process
+
+
+#
+======SIZE-128M===RW-randwrite===BS-4k===IOPS-2000===DEPTH-8======
+#
+name: (g=0): rw=randwrite, bs=4K-4K/4K-4K, ioengine=libaio, iodepth=8
+fio 1.59
+Starting 1 process
+
+
+#
+======SIZE-128M===RW-randwrite===BS-128k===IOPS-2000===DEPTH-8======
+#
+name: (g=0): rw=randwrite, bs=128K-128K/128K-128K, ioengine=libaio, iodepth=8
+fio 1.59
+Starting 1 process
+
+
+#
+======SIZE-128M===RW-randwrite===BS-256k===IOPS-2000===DEPTH-8======
+#
+name: (g=0): rw=randwrite, bs=256K-256K/256K-256K, ioengine=libaio, iodepth=8
+fio 1.59
+Starting 1 process
+
+
+#
+======SIZE-128M===RW-read===BS-4k===IOPS-2000===DEPTH-1======
+#
+name: (g=0): rw=read, bs=4K-4K/4K-4K, ioengine=libaio, iodepth=1
+fio 1.59
+Starting 1 process
+
+
+#
+======SIZE-128M===RW-read===BS-128k===IOPS-2000===DEPTH-1======
+#
+name: (g=0): rw=read, bs=128K-128K/128K-128K, ioengine=libaio, iodepth=1
+fio 1.59
+Starting 1 process
+
+
+#
+======SIZE-128M===RW-read===BS-256k===IOPS-2000===DEPTH-1======
+#
+name: (g=0): rw=read, bs=256K-256K/256K-256K, ioengine=libaio, iodepth=1
+fio 1.59
+Starting 1 process
+
+
+#
+======SIZE-128M===RW-read===BS-4k===IOPS-2000===DEPTH-8======
+#
+name: (g=0): rw=read, bs=4K-4K/4K-4K, ioengine=libaio, iodepth=8
+fio 1.59
+Starting 1 process
+
+
+#
+======SIZE-128M===RW-read===BS-128k===IOPS-2000===DEPTH-8======
+#
+name: (g=0): rw=read, bs=128K-128K/128K-128K, ioengine=libaio, iodepth=8
+fio 1.59
+Starting 1 process
+
+
+#
+======SIZE-128M===RW-read===BS-256k===IOPS-2000===DEPTH-8======
+#
+name: (g=0): rw=read, bs=256K-256K/256K-256K, ioengine=libaio, iodepth=8
+fio 1.59
+Starting 1 process
+
+
+#
+======SIZE-128M===RW-randread===BS-4k===IOPS-2000===DEPTH-1======
+#
+name: (g=0): rw=randread, bs=4K-4K/4K-4K, ioengine=libaio, iodepth=1
+fio 1.59
+Starting 1 process
+
+
+#
+======SIZE-128M===RW-randread===BS-128k===IOPS-2000===DEPTH-1======
+#
+name: (g=0): rw=randread, bs=128K-128K/128K-128K, ioengine=libaio, iodepth=1
+fio 1.59
+Starting 1 process
+
+
+#
+======SIZE-128M===RW-randread===BS-256k===IOPS-2000===DEPTH-1======
+#
+name: (g=0): rw=randread, bs=256K-256K/256K-256K, ioengine=libaio, iodepth=1
+fio 1.59
+Starting 1 process
+
+
+#
+======SIZE-128M===RW-randread===BS-4k===IOPS-2000===DEPTH-8======
+#
+name: (g=0): rw=randread, bs=4K-4K/4K-4K, ioengine=libaio, iodepth=8
+fio 1.59
+Starting 1 process
+
+
+#
+======SIZE-128M===RW-randread===BS-128k===IOPS-2000===DEPTH-8======
+#
+name: (g=0): rw=randread, bs=128K-128K/128K-128K, ioengine=libaio, iodepth=8
+fio 1.59
+Starting 1 process
+
+
+#
+======SIZE-128M===RW-randread===BS-256k===IOPS-2000===DEPTH-8======
+#
+name: (g=0): rw=randread, bs=256K-256K/256K-256K, ioengine=libaio, iodepth=8
+fio 1.59
+Starting 1 process
