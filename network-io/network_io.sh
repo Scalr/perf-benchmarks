@@ -92,6 +92,10 @@ echo -e "\tparallel mode 8 ..."
 echo "iperf parallel mode 8:" >> $LOG
 iperf -c $DEST_IP -p 1234 -t 30 -P 8 | grep '/sec' >> $LOG
 
+echo -e "\tparallel mode 16 ..."
+echo "iperf parallel mode 16:" >> $LOG
+iperf -c $DEST_IP -p 1234 -t 30 -P 16 | grep '/sec' >> $LOG
+
 cd $LOG_DIR
 
 echo "committing  results ..."
