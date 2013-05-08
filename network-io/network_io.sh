@@ -8,7 +8,8 @@ FILE_SIZE=$5
 CLOUD=$6
 SOURCE=/tmp/io_benchmarks
 DEST=/dev/null
-RES_DIR=$HOME/perf-benchmarks/network-io/results
+DIR=$HOME
+RES_DIR=$DIR/perf-benchmarks/network-io/results
 
 if [ "$CLOUD" == "ec2" ]; then
     set -- `ec2metadata | grep availability-zone`
@@ -79,9 +80,17 @@ iperf -c $DEST_IP -p 1234 -t 30 | grep '/sec' >> $LOG
 #echo "iperf dualtest:" >> $LOG
 #iperf -c $DEST_IP -p 1234 -t 30 -d | grep '/sec' >> $LOG
 
+echo -e "\tparallel mode 2 ..."
+echo "iperf parallel mode 2:" >> $LOG
+iperf -c $DEST_IP -p 1234 -t 30 -P 2 | grep '/sec' >> $LOG
+
 echo -e "\tparallel mode 4 ..."
 echo "iperf parallel mode 4:" >> $LOG
 iperf -c $DEST_IP -p 1234 -t 30 -P 4 | grep '/sec' >> $LOG
+
+echo -e "\tparallel mode 8 ..."
+echo "iperf parallel mode 8:" >> $LOG
+iperf -c $DEST_IP -p 1234 -t 30 -P 8 | grep '/sec' >> $LOG
 
 cd $LOG_DIR
 

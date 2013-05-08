@@ -8,6 +8,7 @@ BS=$5
 IOPS=$6
 DEPTH=$7
 OUT=$8
+#OUT=$RW-$BS-$DEPTH-$IOPS-$SIZE
 
 cat > $OUT << EOF
 [global]
