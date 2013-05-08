@@ -74,9 +74,10 @@ echo -e "\tsimple mode ..."
 echo "iperf simple mode:" >> $LOG
 iperf -c $DEST_IP -p 1234 -t 30 | grep '/sec' >> $LOG
 
-echo -e "\tdualtest mode ..."
-echo "iperf dualtest:" >> $LOG
-iperf -c $DEST_IP -p 1234 -t 30 -d | grep '/sec' >> $LOG
+# dont work across atlatic - water fear
+#echo -e "\tdualtest mode ..."
+#echo "iperf dualtest:" >> $LOG
+#iperf -c $DEST_IP -p 1234 -t 30 -d | grep '/sec' >> $LOG
 
 echo -e "\tparallel mode 4 ..."
 echo "iperf parallel mode 4:" >> $LOG
