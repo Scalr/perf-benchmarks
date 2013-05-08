@@ -1,6 +1,7 @@
 #!/bin/bash
 
 FILE=$1
+SIZE=$2
 CLOUD=$2
 
 DIR=$HOME
@@ -28,11 +29,10 @@ if [ ! -d $LOG_DIR ]; then
     mkdir -p $LOG_DIR
 fi
 
-SIZE=64M
 IOPS=2000
 
 
-
+echo WRITE
 RW="write"
 
 BS=4k
@@ -87,6 +87,7 @@ fio --timeout=300 /tmp/fio.conf >> $LOG
 
 
 
+echo RANDWRITE
 RW="randwrite"
 
 BS=4k
@@ -141,6 +142,7 @@ fio --timeout=300 /tmp/fio.conf >> $LOG
 
 
 
+echo READ
 RW="read" 
 
 BS=4k
@@ -196,6 +198,7 @@ fio --timeout=300 /tmp/fio.conf >> $LOG
 
 
 
+echo RANDREAD
 RW="randread" 
 
 BS=4k
@@ -248,3 +251,12 @@ echo ======SIZE-$SIZE===RW-$RW===BS-$BS===IOPS-$IOPS===DEPTH-$DEPTH====== >> $LO
 echo "#" >> $LOG
 /bin/bash $DIR/perf-benchmarks/disk-io/fio/config_generator.sh name $FILE $SIZE $RW $BS $IOPS $DEPTH /tmp/fio.conf
 fio --timeout=300 /tmp/fio.conf >> $LOG
+
+cd $RES_DIR 
+
+echo "committing  results ..."
+git fetch origin
+git pull origin master
+git add $LOG
+git commit -m "$CLOUD $TYPE $LOG_NAME"
+git push -u origin master
