@@ -32,30 +32,32 @@ fi
 IOPS=2000
 
 
+# FIXME => for, while loop
+
 echo WRITE
 RW="write"
 
 BS=4k
 DEPTH=1
-echo -e "\n#" >> $LOG
+echo -e "#" >> $LOG
 echo ======SIZE-$SIZE===RW-$RW===BS-$BS===IOPS-$IOPS===DEPTH-$DEPTH====== >> $LOG
-echo -e "\n#" >> $LOG
+echo -e "#" >> $LOG
 /bin/bash $DIR/perf-benchmarks/disk-io/fio/config_generator.sh name $FILE $SIZE $RW $BS $IOPS $DEPTH /tmp/fio.conf
 fio --timeout=300 /tmp/fio.conf >> $LOG
 
 BS=128k
 DEPTH=1
-echo -e "\n#" >> $LOG
+echo -e "\n\n#" >> $LOG
 echo ======SIZE-$SIZE===RW-$RW===BS-$BS===IOPS-$IOPS===DEPTH-$DEPTH====== >> $LOG
-echo -e "\n#" >> $LOG
+echo -e "#" >> $LOG
 /bin/bash $DIR/perf-benchmarks/disk-io/fio/config_generator.sh name $FILE $SIZE $RW $BS $IOPS $DEPTH /tmp/fio.conf
 fio --timeout=300 /tmp/fio.conf >> $LOG
 
 BS=256k
 DEPTH=1
-echo -e "\n#" >> $LOG
+echo -e "\n\n#" >> $LOG
 echo ======SIZE-$SIZE===RW-$RW===BS-$BS===IOPS-$IOPS===DEPTH-$DEPTH====== >> $LOG
-echo -e "\n#" >> $LOG
+echo -e "#" >> $LOG
 /bin/bash $DIR/perf-benchmarks/disk-io/fio/config_generator.sh name $FILE $SIZE $RW $BS $IOPS $DEPTH /tmp/fio.conf
 fio --timeout=300 /tmp/fio.conf >> $LOG
 
@@ -63,25 +65,25 @@ fio --timeout=300 /tmp/fio.conf >> $LOG
 
 BS=4k
 DEPTH=8
-echo -e "\n#" >> $LOG
+echo -e "\n\n#" >> $LOG
 echo ======SIZE-$SIZE===RW-$RW===BS-$BS===IOPS-$IOPS===DEPTH-$DEPTH====== >> $LOG
-echo -e "\n#" >> $LOG
+echo -e "#" >> $LOG
 /bin/bash $DIR/perf-benchmarks/disk-io/fio/config_generator.sh name $FILE $SIZE $RW $BS $IOPS $DEPTH /tmp/fio.conf
 fio --timeout=300 /tmp/fio.conf >> $LOG
 
 BS=128k
 DEPTH=8
-echo -e "\n#" >> $LOG
+echo -e "\n\n#" >> $LOG
 echo ======SIZE-$SIZE===RW-$RW===BS-$BS===IOPS-$IOPS===DEPTH-$DEPTH====== >> $LOG
-echo -e "\n#" >> $LOG
+echo -e "#" >> $LOG
 /bin/bash $DIR/perf-benchmarks/disk-io/fio/config_generator.sh name $FILE $SIZE $RW $BS $IOPS $DEPTH /tmp/fio.conf
 fio --timeout=300 /tmp/fio.conf >> $LOG
 
 BS=256k
 DEPTH=8
-echo -e "\n#" >> $LOG
+echo -e "\n\n#" >> $LOG
 echo ======SIZE-$SIZE===RW-$RW===BS-$BS===IOPS-$IOPS===DEPTH-$DEPTH====== >> $LOG
-echo -e "\n#" >> $LOG
+echo -e "#" >> $LOG
 /bin/bash $DIR/perf-benchmarks/disk-io/fio/config_generator.sh name $FILE $SIZE $RW $BS $IOPS $DEPTH /tmp/fio.conf
 fio --timeout=300 /tmp/fio.conf >> $LOG
 
@@ -92,25 +94,25 @@ RW="randwrite"
 
 BS=4k
 DEPTH=1
-echo -e "\n#" >> $LOG
+echo -e "\n\n#" >> $LOG
 echo ======SIZE-$SIZE===RW-$RW===BS-$BS===IOPS-$IOPS===DEPTH-$DEPTH====== >> $LOG
-echo -e "\n#" >> $LOG
+echo -e "#" >> $LOG
 /bin/bash $DIR/perf-benchmarks/disk-io/fio/config_generator.sh name $FILE $SIZE $RW $BS $IOPS $DEPTH /tmp/fio.conf
 fio --timeout=300 /tmp/fio.conf >> $LOG
 
 BS=128k
 DEPTH=1
-echo -e "\n#" >> $LOG
+echo -e "\n\n#" >> $LOG
 echo ======SIZE-$SIZE===RW-$RW===BS-$BS===IOPS-$IOPS===DEPTH-$DEPTH====== >> $LOG
-echo -e "\n#" >> $LOG
+echo -e "#" >> $LOG
 /bin/bash $DIR/perf-benchmarks/disk-io/fio/config_generator.sh name $FILE $SIZE $RW $BS $IOPS $DEPTH /tmp/fio.conf
 fio --timeout=300 /tmp/fio.conf >> $LOG
 
 BS=256k
 DEPTH=1
-echo -e "\n#" >> $LOG
+echo -e "\n\n#" >> $LOG
 echo ======SIZE-$SIZE===RW-$RW===BS-$BS===IOPS-$IOPS===DEPTH-$DEPTH====== >> $LOG
-echo -e "\n#" >> $LOG
+echo -e "#" >> $LOG
 /bin/bash $DIR/perf-benchmarks/disk-io/fio/config_generator.sh name $FILE $SIZE $RW $BS $IOPS $DEPTH /tmp/fio.conf
 fio --timeout=300 /tmp/fio.conf >> $LOG
 
@@ -118,25 +120,25 @@ fio --timeout=300 /tmp/fio.conf >> $LOG
 
 BS=4k
 DEPTH=8
-echo -e "\n#" >> $LOG
+echo -e "\n\n#" >> $LOG
 echo ======SIZE-$SIZE===RW-$RW===BS-$BS===IOPS-$IOPS===DEPTH-$DEPTH====== >> $LOG
-echo -e "\n#" >> $LOG
+echo -e "#" >> $LOG
 /bin/bash $DIR/perf-benchmarks/disk-io/fio/config_generator.sh name $FILE $SIZE $RW $BS $IOPS $DEPTH /tmp/fio.conf
 fio --timeout=300 /tmp/fio.conf >> $LOG
 
 BS=128k
 DEPTH=8
-echo -e "\n#" >> $LOG
+echo -e "\n\n#" >> $LOG
 echo ======SIZE-$SIZE===RW-$RW===BS-$BS===IOPS-$IOPS===DEPTH-$DEPTH====== >> $LOG
-echo -e "\n#" >> $LOG
+echo -e "#" >> $LOG
 /bin/bash $DIR/perf-benchmarks/disk-io/fio/config_generator.sh name $FILE $SIZE $RW $BS $IOPS $DEPTH /tmp/fio.conf
 fio --timeout=300 /tmp/fio.conf >> $LOG
 
 BS=256k
 DEPTH=8
-echo -e "\n#" >> $LOG
+echo -e "\n\n#" >> $LOG
 echo ======SIZE-$SIZE===RW-$RW===BS-$BS===IOPS-$IOPS===DEPTH-$DEPTH====== >> $LOG
-echo -e "\n#" >> $LOG
+echo -e "#" >> $LOG
 /bin/bash $DIR/perf-benchmarks/disk-io/fio/config_generator.sh name $FILE $SIZE $RW $BS $IOPS $DEPTH /tmp/fio.conf
 fio --timeout=300 /tmp/fio.conf >> $LOG
 
@@ -147,25 +149,25 @@ RW="read"
 
 BS=4k
 DEPTH=1
-echo -e "\n#" >> $LOG
+echo -e "\n\n#" >> $LOG
 echo ======SIZE-$SIZE===RW-$RW===BS-$BS===IOPS-$IOPS===DEPTH-$DEPTH====== >> $LOG
-echo -e "\n#" >> $LOG
+echo -e "#" >> $LOG
 /bin/bash $DIR/perf-benchmarks/disk-io/fio/config_generator.sh name $FILE $SIZE $RW $BS $IOPS $DEPTH /tmp/fio.conf
 fio --timeout=300 /tmp/fio.conf >> $LOG
 
 BS=128k
 DEPTH=1
-echo -e "\n#" >> $LOG
+echo -e "\n\n#" >> $LOG
 echo ======SIZE-$SIZE===RW-$RW===BS-$BS===IOPS-$IOPS===DEPTH-$DEPTH====== >> $LOG
-echo -e "\n#" >> $LOG
+echo -e "#" >> $LOG
 /bin/bash $DIR/perf-benchmarks/disk-io/fio/config_generator.sh name $FILE $SIZE $RW $BS $IOPS $DEPTH /tmp/fio.conf
 fio --timeout=300 /tmp/fio.conf >> $LOG
 
 BS=256k
 DEPTH=1
-echo -e "\n#" >> $LOG
+echo -e "\n\n#" >> $LOG
 echo ======SIZE-$SIZE===RW-$RW===BS-$BS===IOPS-$IOPS===DEPTH-$DEPTH====== >> $LOG
-echo -e "\n#" >> $LOG
+echo -e "#" >> $LOG
 /bin/bash $DIR/perf-benchmarks/disk-io/fio/config_generator.sh name $FILE $SIZE $RW $BS $IOPS $DEPTH /tmp/fio.conf
 fio --timeout=300 /tmp/fio.conf >> $LOG
 
@@ -174,25 +176,25 @@ fio --timeout=300 /tmp/fio.conf >> $LOG
 
 BS=4k
 DEPTH=8
-echo -e "\n#" >> $LOG
+echo -e "\n\n#" >> $LOG
 echo ======SIZE-$SIZE===RW-$RW===BS-$BS===IOPS-$IOPS===DEPTH-$DEPTH====== >> $LOG
-echo -e "\n#" >> $LOG
+echo -e "#" >> $LOG
 /bin/bash $DIR/perf-benchmarks/disk-io/fio/config_generator.sh name $FILE $SIZE $RW $BS $IOPS $DEPTH /tmp/fio.conf
 fio --timeout=300 /tmp/fio.conf >> $LOG
 
 BS=128k
 DEPTH=8
-echo -e "\n#" >> $LOG
+echo -e "\n\n#" >> $LOG
 echo ======SIZE-$SIZE===RW-$RW===BS-$BS===IOPS-$IOPS===DEPTH-$DEPTH====== >> $LOG
-echo -e "\n#" >> $LOG
+echo -e "#" >> $LOG
 /bin/bash $DIR/perf-benchmarks/disk-io/fio/config_generator.sh name $FILE $SIZE $RW $BS $IOPS $DEPTH /tmp/fio.conf
 fio --timeout=300 /tmp/fio.conf >> $LOG
 
 BS=256k
 DEPTH=8
-echo -e "\n#" >> $LOG
+echo -e "\n\n#" >> $LOG
 echo ======SIZE-$SIZE===RW-$RW===BS-$BS===IOPS-$IOPS===DEPTH-$DEPTH====== >> $LOG
-echo -e "\n#" >> $LOG
+echo -e "#" >> $LOG
 /bin/bash $DIR/perf-benchmarks/disk-io/fio/config_generator.sh name $FILE $SIZE $RW $BS $IOPS $DEPTH /tmp/fio.conf
 fio --timeout=300 /tmp/fio.conf >> $LOG
 
@@ -203,25 +205,25 @@ RW="randread"
 
 BS=4k
 DEPTH=1
-echo -e "\n#" >> $LOG
+echo -e "\n\n#" >> $LOG
 echo ======SIZE-$SIZE===RW-$RW===BS-$BS===IOPS-$IOPS===DEPTH-$DEPTH====== >> $LOG
-echo -e "\n#" >> $LOG
+echo -e "#" >> $LOG
 /bin/bash $DIR/perf-benchmarks/disk-io/fio/config_generator.sh name $FILE $SIZE $RW $BS $IOPS $DEPTH /tmp/fio.conf
 fio --timeout=300 /tmp/fio.conf >> $LOG
 
 BS=128k
 DEPTH=1
-echo -e "\n#" >> $LOG
+echo -e "\n\n#" >> $LOG
 echo ======SIZE-$SIZE===RW-$RW===BS-$BS===IOPS-$IOPS===DEPTH-$DEPTH====== >> $LOG
-echo -e "\n#" >> $LOG
+echo -e "#" >> $LOG
 /bin/bash $DIR/perf-benchmarks/disk-io/fio/config_generator.sh name $FILE $SIZE $RW $BS $IOPS $DEPTH /tmp/fio.conf
 fio --timeout=300 /tmp/fio.conf >> $LOG
 
 BS=256k
 DEPTH=1
-echo -e "\n#" >> $LOG
+echo -e "\n\n#" >> $LOG
 echo ======SIZE-$SIZE===RW-$RW===BS-$BS===IOPS-$IOPS===DEPTH-$DEPTH====== >> $LOG
-echo -e "\n#" >> $LOG
+echo -e "#" >> $LOG
 /bin/bash $DIR/perf-benchmarks/disk-io/fio/config_generator.sh name $FILE $SIZE $RW $BS $IOPS $DEPTH /tmp/fio.conf
 fio --timeout=300 /tmp/fio.conf >> $LOG
 
@@ -230,25 +232,25 @@ fio --timeout=300 /tmp/fio.conf >> $LOG
 
 BS=4k
 DEPTH=8
-echo -e "\n#" >> $LOG
+echo -e "\n\n#" >> $LOG
 echo ======SIZE-$SIZE===RW-$RW===BS-$BS===IOPS-$IOPS===DEPTH-$DEPTH====== >> $LOG
-echo -e "\n#" >> $LOG
+echo -e "#" >> $LOG
 /bin/bash $DIR/perf-benchmarks/disk-io/fio/config_generator.sh name $FILE $SIZE $RW $BS $IOPS $DEPTH /tmp/fio.conf
 fio --timeout=300 /tmp/fio.conf >> $LOG
 
 BS=128k
 DEPTH=8
-echo -e "\n#" >> $LOG
+echo -e "\n\n#" >> $LOG
 echo ======SIZE-$SIZE===RW-$RW===BS-$BS===IOPS-$IOPS===DEPTH-$DEPTH====== >> $LOG
-echo -e "\n#" >> $LOG
+echo -e "#" >> $LOG
 /bin/bash $DIR/perf-benchmarks/disk-io/fio/config_generator.sh name $FILE $SIZE $RW $BS $IOPS $DEPTH /tmp/fio.conf
 fio --timeout=300 /tmp/fio.conf >> $LOG
 
 BS=256k
 DEPTH=8
-echo -e "\n#" >> $LOG
+echo -e "\n\n#" >> $LOG
 echo ======SIZE-$SIZE===RW-$RW===BS-$BS===IOPS-$IOPS===DEPTH-$DEPTH====== >> $LOG
-echo -e "\n#" >> $LOG
+echo -e "#" >> $LOG
 /bin/bash $DIR/perf-benchmarks/disk-io/fio/config_generator.sh name $FILE $SIZE $RW $BS $IOPS $DEPTH /tmp/fio.conf
 fio --timeout=300 /tmp/fio.conf >> $LOG
 
