@@ -84,46 +84,60 @@ def ec2_network_io_test(
         scp_cli2.put('%s/.ssh/id_rsa.pub' % os.environ['HOME'], '/tmp/id_rsa.pub')
 
         stdin, stdout, stderr = ssh_cli1.exec_command('cat /tmp/id_rsa.pub >> $HOME/.ssh/authorized_keys')
-        print inst_type, stderr.read()
+        stderr.read()
+        #print inst_type, stderr.read()
 
         stdin, stdout, stderr = ssh_cli1.exec_command('mv /tmp/id_rsa $HOME/.ssh/')
-        print inst_type, stderr.read()
+        stderr.read()
+        #print inst_type, stderr.read()
 
         stdin, stdout, stderr = ssh_cli1.exec_command('mv /tmp/id_rsa.pub $HOME/.ssh/')
-        print inst_type, stderr.read()
+        stderr.read()
+        #print inst_type, stderr.read()
 
         stdin, stdout, stderr = ssh_cli1.exec_command('chmod 400 $HOME/.ssh/id_rsa*')
-        print inst_type, stderr.read()
+        stderr.read()
+        #print inst_type, stderr.read()
 
         stdin, stdout, stderr = ssh_cli2.exec_command('cat /tmp/id_rsa.pub >> $HOME/.ssh/authorized_keys')
-        print inst_type, stderr.read()
+        stderr.read()
+        #print inst_type, stderr.read()
         
         stdin, stdout, stderr = ssh_cli2.exec_command('mv /tmp/id_rsa $HOME/.ssh/')
-        print inst_type, stderr.read()
+        stderr.read()
+        #print inst_type, stderr.read()
 
         stdin, stdout, stderr = ssh_cli2.exec_command('mv /tmp/id_rsa.pub $HOME/.ssh/')
-        print inst_type, stderr.read()
+        stderr.read()
+        #print inst_type, stderr.read()
 
         stdin, stdout, stderr = ssh_cli2.exec_command('chmod 400 $HOME/.ssh/id_rsa*')
-        print inst_type, stderr.read()
+        stderr.read()
+        #print inst_type, stderr.read()
 
         stdin, stdout, stderr = ssh_cli1.exec_command('ssh-keyscan github.com >> $HOME/.ssh/known_hosts')
-        print inst_type, stderr.read()
+        stderr.read()
+        #print inst_type, stderr.read()
 
         stdin, stdout, stderr = ssh_cli1.exec_command('ssh-keyscan %s >> $HOME/.ssh/known_hosts' % inst2.ip_address)
-        print inst_type, stderr.read()
+        stderr.read()
+        #print inst_type, stderr.read()
 
         stdin, stdout, stderr = ssh_cli1.exec_command('ssh-keyscan %s >> $HOME/.ssh/authorized_keys' % inst2.ip_address)
-        print inst_type, stderr.read()
+        stderr.read()
+        #print inst_type, stderr.read()
 
         stdin, stdout, stderr = ssh_cli2.exec_command('ssh-keyscan github.com >> $HOME/.ssh/known_hosts')
-        print inst_type, stderr.read()
+        stderr.read()
+        #print inst_type, stderr.read()
 
         stdin, stdout, stderr = ssh_cli2.exec_command('ssh-keyscan %s >> $HOME/.ssh/known_hosts' % inst1.ip_address)
-        print inst_type, stderr.read()
+        stderr.read()
+        #print inst_type, stderr.read()
 
         stdin, stdout, stderr = ssh_cli2.exec_command('ssh-keyscan %s >> $HOME/.ssh/authorized_keys' % inst1.ip_address)
-        print inst_type, stderr.read()
+        stderr.read()
+        #print inst_type, stderr.read()
 
         stdin, stdout, stderr = ssh_cli1.exec_command('export DEBIAN_FRONTEND=noninteractive;sudo apt-get install -y iperf fio')
         stdout.channel.recv_exit_status()
@@ -164,10 +178,9 @@ def ec2_network_io_test(
 
     finally:
 
-        #print inst_type, 'terminating instances ...'
-        #conn1.terminate_instances(instance_ids=[inst1.id])
-        #conn2.terminate_instances(instance_ids=[inst2.id])
-        pass
+        print inst_type, 'terminating instances ...'
+        conn1.terminate_instances(instance_ids=[inst1.id])
+        conn2.terminate_instances(instance_ids=[inst2.id])
 
 
 def scp_test(ip_from, ip_to, filesize):
@@ -179,9 +192,7 @@ def scp_test(ip_from, ip_to, filesize):
     stdin, stdout, stderr = ssh_cli.exec_command('truncate -s %s /tmp/out.file' % filesize)
     print stderr.read()
 
-    print 'scp test ...'
-
-    print 'send %s to %s' % (filesize, ip_to)
+    print 'scp send %s to %s' % (filesize, ip_to)
 
     start_time = time.time()
     stdin, stdout, stderr = ssh_cli.exec_command('scp /tmp/out.file ubuntu@%s:/dev/null' % ip_to)
@@ -222,12 +233,10 @@ def netcat_test(ip_from, ip_to, filesize):
     stdin, stdout, stderr = ssh_cli.exec_command('truncate -s %s /tmp/out.file' % filesize)
     print stderr.read()
 
-    print 'netcat test ...'
-
     stdin, stdout, stderr = ssh_cli.exec_command('sudo killall -9 nc')
     stdout.channel.recv_exit_status()
 
-    print 'send %s to %s' % (filesize, ip_to)
+    print 'netcat send %s to %s' % (filesize, ip_to)
 
     start_time = time.time()
     stdin, stdout, stderr = ssh_cli.exec_command('cat /tmp/out.file | nc %s 7777 -q 0' % ip_to)
@@ -267,7 +276,7 @@ def iperf_test(ip_serv, ip_cli):
     speed = []
 
     stdin, stdout, stderr = ssh_cli.exec_command(
-            "iperf -c %s -p 1234 -t 20 -f m | grep '/sec' > /tmp/iperf.log" % ip_serv)
+            "iperf -c %s -p 1234 -t 30 -f m | grep '/sec' > /tmp/iperf.log" % ip_serv)
     stdout.channel.recv_exit_status()
     print stderr.read()
     stdin, stdout, stderr = ssh_cli.exec_command('cat /tmp/iperf.log')
@@ -283,7 +292,7 @@ def iperf_test(ip_serv, ip_cli):
 
     for p in [4, 8, 12, 16]:
         stdin, stdout, stderr = ssh_cli.exec_command(
-                "iperf -c %s -p 1234 -t 20 -P %s -f m | grep '/sec' > /tmp/iperf.log" % (ip_serv, p))
+                "iperf -c %s -p 1234 -t 30 -P %s -f m | grep '/sec' > /tmp/iperf.log" % (ip_serv, p))
         stdout.channel.recv_exit_status()
         print stderr.read()
         stdin, stdout, stderr = ssh_cli.exec_command('cat /tmp/iperf.log')
@@ -311,14 +320,13 @@ if __name__ == '__main__':
 
     ps = []
 
-    #for itype in ['m1.small', 'm1.xlarge', 'c1.medium']:
-    for itype in ['m1.small']:
+    for itype in ['m1.small', 'm1.xlarge', 'c1.medium']:
 
-        #ps.append(mp.Process(target=ec2_network_io_test,
-        #        kwargs={'inst_type':itype, 'filesize':'5M'}))
+        ps.append(mp.Process(target=ec2_network_io_test,
+                kwargs={'inst_type':itype, 'filesize':'5G'}))
         ps.append(mp.Process(target=ec2_network_io_test,
                         kwargs={'inst_type':itype, 'region1':'us-east-1', 'ami1':'ami-3fec7956',
-                        'region2':'eu-west-1', 'ami2':'ami-f2191786', 'filesize':'5M'}))
+                        'region2':'eu-west-1', 'ami2':'ami-f2191786', 'filesize':'5G'}))
 
     for p in ps:
         p.start()
