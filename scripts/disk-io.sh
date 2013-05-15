@@ -10,7 +10,7 @@ SIZE=$2
 CLOUD=$3
 
 
-DIR=$HOME/workspace
+DIR=$HOME
 RES_DIR=$DIR/perf-benchmarks/results/disk-io
 
 if [ "$CLOUD" == "ec2" ]; then
