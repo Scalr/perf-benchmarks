@@ -43,7 +43,7 @@ do
     do
         echo "[$DATE $TIME UTC]" | tee -a $LOG
         /bin/bash $DIR/perf-benchmarks/scripts/config-generator.sh name $FILE $SIZE $RW $BS $DEPTH /tmp/fio.conf
-        echo /tmp/fio.com >>$LOG
+        cat /tmp/fio.com >>$LOG
         sudo fio --timeout=630 /tmp/fio.conf | tee -a $LOG
     done
 done
@@ -56,7 +56,7 @@ do
     do
         echo "[$DATE $TIME UTC]" | tee -a $LOG
         /bin/bash $DIR/perf-benchmarks/scripts/config-generator.sh name $FILE $SIZE $RW $BS $DEPTH /tmp/fio.conf
-        echo /tmp/fio.com >>$LOG
+        cat /tmp/fio.com >>$LOG
         sudo fio --timeout=630 /tmp/fio.conf | tee -a $LOG
     done
 done
