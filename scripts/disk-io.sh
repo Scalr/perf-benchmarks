@@ -10,7 +10,7 @@ SIZE=$2
 CLOUD=$3
 
 
-DIR=$HOME
+DIR=$HOME/workspace
 RES_DIR=$DIR/perf-benchmarks/results/disk-io
 
 if [ "$CLOUD" == "ec2" ]; then
@@ -37,9 +37,9 @@ fi
 
 RW="randwrite"
 
-for BS in 16k 64k 128k
+for BS in 128k 256k
 do
-    for DEPTH in 1 4 32
+    for DEPTH in 4 32
     do
         echo "# $DATE $TIME UTC" | tee -a $LOG
         /bin/bash $DIR/perf-benchmarks/scripts/config-generator.sh name $FILE $SIZE $RW $BS $DEPTH /tmp/fio.conf
@@ -50,9 +50,9 @@ done
 
 RW="randread"
 
-for BS in 16k 64k 128k
+for BS in 128k 256k
 do
-    for DEPTH in 1 4 32
+    for DEPTH in 4 32
     do
         echo "# $DATE $TIME UTC" | tee -a $LOG
         /bin/bash $DIR/perf-benchmarks/scripts/config-generator.sh name $FILE $SIZE $RW $BS $DEPTH /tmp/fio.conf

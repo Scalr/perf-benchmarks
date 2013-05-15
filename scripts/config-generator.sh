@@ -14,7 +14,7 @@ clocksource=cpu
 randrepeat=0
 ioengine=libaio
 direct=1
-runtime=300
+runtime=180
 
 [$NAME]
 ioscheduler=deadline
