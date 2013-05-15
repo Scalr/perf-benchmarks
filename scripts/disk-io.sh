@@ -39,12 +39,12 @@ RW="randwrite"
 
 for BS in 16k 64k 128k
 do
-    for DEPTH in 1 4
+    for DEPTH in 1 4 32
     do
         echo "# $DATE $TIME UTC" | tee -a $LOG
         /bin/bash $DIR/perf-benchmarks/scripts/config-generator.sh name $FILE $SIZE $RW $BS $DEPTH /tmp/fio.conf
         cat /tmp/fio.conf >>$LOG
-        sudo fio --timeout=630 /tmp/fio.conf | tee -a $LOG
+        sudo fio --timeout=330 /tmp/fio.conf | tee -a $LOG
     done
 done
 
@@ -52,11 +52,14 @@ RW="randread"
 
 for BS in 16k 64k 128k
 do
-    for DEPTH in 1 4
+    for DEPTH in 1 4 32
     do
         echo "# $DATE $TIME UTC" | tee -a $LOG
         /bin/bash $DIR/perf-benchmarks/scripts/config-generator.sh name $FILE $SIZE $RW $BS $DEPTH /tmp/fio.conf
         cat /tmp/fio.conf >>$LOG
-        sudo fio --timeout=630 /tmp/fio.conf | tee -a $LOG
+        sudo fio --timeout=330 /tmp/fio.conf | tee -a $LOG
     done
 done
+
+git config --global user.email "roman@scalr.com"
+git config --global user.name "Roma Koshel"

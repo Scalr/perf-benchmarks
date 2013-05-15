@@ -14,11 +14,11 @@ clocksource=cpu
 randrepeat=0
 ioengine=libaio
 direct=1
-runtime=600
+runtime=300
 
 [$NAME]
 ioscheduler=deadline
-ramp_time=15
+ramp_time=30
 filename=$FILE
 rw=$RW
 size=$SIZE
