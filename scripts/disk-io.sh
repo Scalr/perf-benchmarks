@@ -35,15 +35,13 @@ if [ ! -d $LOG_DIR ]; then
     mkdir -p $LOG_DIR
 fi
 
-echo randwrite 
-
 RW="randwrite"
 
 for BS in 16k 64k 128k
 do
     for DEPTH in 1 4
     do
-        echo "[$DATE $TIME UTC $FILE]" | tee -a $LOG
+        echo "[$DATE $TIME UTC]" | tee -a $LOG
         /bin/bash $DIR/perf-benchmarks/scripts/config-generator.sh name $FILE $SIZE $RW $BS $DEPTH /tmp/fio.conf
         echo /tmp/fio.com >>$LOG
         sudo fio --timeout=630 /tmp/fio.conf | tee -a $LOG
@@ -56,7 +54,7 @@ for BS in 16k 64k 128k
 do
     for DEPTH in 1 4
     do
-        echo "[$DATE $TIME UTC $FILE]" | tee -a $LOG
+        echo "[$DATE $TIME UTC]" | tee -a $LOG
         /bin/bash $DIR/perf-benchmarks/scripts/config-generator.sh name $FILE $SIZE $RW $BS $DEPTH /tmp/fio.conf
         echo /tmp/fio.com >>$LOG
         sudo fio --timeout=630 /tmp/fio.conf | tee -a $LOG
