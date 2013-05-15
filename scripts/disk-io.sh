@@ -17,8 +17,8 @@ if [ "$CLOUD" == "ec2" ]; then
     set -- `ec2metadata | grep instance-type`
     TYPE=$2
 elif [ "$CLOUD" == "gce" ]; then
-    set -- `gcutil getinstance $HOSTNAME | grep 'machine'`
-    set -- `echo $4 | tr "/" " "`
+    line=$(gcutil getinstance $HOSTNAME | grep 'machine')
+    set -- $(echo $line | tr "|" " ")
     TYPE=$2
 else
     CLOUD="unknown"
