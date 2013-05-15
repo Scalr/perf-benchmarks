@@ -1,0 +1,362 @@
+# 2013-05-15 17:40:17 UTC
+[global]
+clocksource=cpu
+randrepeat=0
+ioengine=libaio
+direct=1
+runtime=180
+
+[name]
+ioscheduler=deadline
+ramp_time=30
+filename=/dev/sdb
+rw=randwrite
+size=5G
+bs=128k
+iodepth=4
+stonewall
+name: (g=0): rw=randwrite, bs=128K-128K/128K-128K, ioengine=libaio, iodepth=4
+2.0.8
+Starting 1 process
+
+name: (groupid=0, jobs=1): err= 0: pid=5538
+  write: io=3725.9MB, bw=47492KB/s, iops=370 , runt= 80335msec
+    slat (usec): min=9 , max=5504 , avg=32.97, stdev=28.13
+    clat (usec): min=3171 , max=17206 , avg=10743.18, stdev=851.18
+     lat (usec): min=3224 , max=17235 , avg=10777.77, stdev=850.53
+    clat percentiles (usec):
+     |  1.00th=[ 7712],  5.00th=[ 9792], 10.00th=[10048], 20.00th=[10304],
+     | 30.00th=[10432], 40.00th=[10688], 50.00th=[10816], 60.00th=[10944],
+     | 70.00th=[11072], 80.00th=[11200], 90.00th=[11456], 95.00th=[11712],
+     | 99.00th=[13632], 99.50th=[14400], 99.90th=[15808], 99.95th=[16512],
+     | 99.99th=[17024]
+    bw (KB/s)  : min=    4, max=52736, per=99.43%, avg=47222.68, stdev=3774.31
+    lat (msec) : 4=0.01%, 10=9.48%, 20=90.53%
+  cpu          : usr=0.55%, sys=2.22%, ctx=40968, majf=0, minf=22
+  IO depths    : 1=0.1%, 2=0.1%, 4=137.4%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued    : total=r=0/w=29804/d=0, short=r=0/w=0/d=0
+
+Run status group 0 (all jobs):
+  WRITE: io=3725.9MB, aggrb=47492KB/s, minb=47492KB/s, maxb=47492KB/s, mint=80335msec, maxt=80335msec
+
+Disk stats (read/write):
+  sdb: ios=86/40869, merge=0/0, ticks=710/433310, in_queue=434040, util=98.91%
+# 2013-05-15 17:40:17 UTC
+[global]
+clocksource=cpu
+randrepeat=0
+ioengine=libaio
+direct=1
+runtime=180
+
+[name]
+ioscheduler=deadline
+ramp_time=30
+filename=/dev/sdb
+rw=randwrite
+size=5G
+bs=128k
+iodepth=32
+stonewall
+name: (g=0): rw=randwrite, bs=128K-128K/128K-128K, ioengine=libaio, iodepth=32
+2.0.8
+Starting 1 process
+
+name: (groupid=0, jobs=1): err= 0: pid=5606
+  write: io=3733.7MB, bw=47541KB/s, iops=371 , runt= 80420msec
+    slat (usec): min=11 , max=251 , avg=32.59, stdev= 7.94
+    clat (msec): min=57 , max=123 , avg=86.16, stdev= 1.46
+     lat (msec): min=57 , max=123 , avg=86.20, stdev= 1.46
+    clat percentiles (msec):
+     |  1.00th=[   82],  5.00th=[   85], 10.00th=[   86], 20.00th=[   86],
+     | 30.00th=[   86], 40.00th=[   87], 50.00th=[   87], 60.00th=[   87],
+     | 70.00th=[   87], 80.00th=[   87], 90.00th=[   88], 95.00th=[   88],
+     | 99.00th=[   89], 99.50th=[   90], 99.90th=[   92], 99.95th=[   94],
+     | 99.99th=[  122]
+    bw (KB/s)  : min=    4, max=52780, per=99.41%, avg=47260.01, stdev=3775.05
+    lat (msec) : 100=100.07%, 250=0.04%
+  cpu          : usr=0.62%, sys=2.13%, ctx=40977, majf=0, minf=22
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=137.2%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.1%, 64=0.0%, >=64=0.0%
+     issued    : total=r=0/w=29838/d=0, short=r=0/w=0/d=0
+
+Run status group 0 (all jobs):
+  WRITE: io=3733.7MB, aggrb=47540KB/s, minb=47540KB/s, maxb=47540KB/s, mint=80420msec, maxt=80420msec
+
+Disk stats (read/write):
+  sdb: ios=72/40905, merge=0/0, ticks=4810/3484880, in_queue=3490740, util=98.91%
+# 2013-05-15 17:40:17 UTC
+[global]
+clocksource=cpu
+randrepeat=0
+ioengine=libaio
+direct=1
+runtime=180
+
+[name]
+ioscheduler=deadline
+ramp_time=30
+filename=/dev/sdb
+rw=randwrite
+size=5G
+bs=256k
+iodepth=4
+stonewall
+name: (g=0): rw=randwrite, bs=256K-256K/256K-256K, ioengine=libaio, iodepth=4
+2.0.8
+Starting 1 process
+
+name: (groupid=0, jobs=1): err= 0: pid=5657
+  write: io=3122.6MB, bw=68078KB/s, iops=265 , runt= 46967msec
+    slat (usec): min=16 , max=219 , avg=40.87, stdev= 9.39
+    clat (usec): min=7927 , max=34284 , avg=14995.85, stdev=998.07
+     lat (usec): min=7981 , max=34322 , avg=15038.81, stdev=997.14
+    clat percentiles (usec):
+     |  1.00th=[11584],  5.00th=[13632], 10.00th=[14144], 20.00th=[14528],
+     | 30.00th=[14784], 40.00th=[14912], 50.00th=[15040], 60.00th=[15168],
+     | 70.00th=[15296], 80.00th=[15552], 90.00th=[15808], 95.00th=[16064],
+     | 99.00th=[18304], 99.50th=[18816], 99.90th=[20096], 99.95th=[20864],
+     | 99.99th=[32384]
+    bw (KB/s)  : min=    8, max=71904, per=98.95%, avg=67366.05, stdev=7038.07
+    lat (msec) : 10=0.16%, 20=99.75%, 50=0.11%
+  cpu          : usr=0.49%, sys=2.24%, ctx=20492, majf=0, minf=22
+  IO depths    : 1=0.1%, 2=0.1%, 4=164.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued    : total=r=0/w=12487/d=0, short=r=0/w=0/d=0
+
+Run status group 0 (all jobs):
+  WRITE: io=3122.6MB, aggrb=68078KB/s, minb=68078KB/s, maxb=68078KB/s, mint=46967msec, maxt=46967msec
+
+Disk stats (read/write):
+  sdb: ios=78/20475, merge=0/0, ticks=760/301780, in_queue=302530, util=98.51%
+# 2013-05-15 17:40:17 UTC
+[global]
+clocksource=cpu
+randrepeat=0
+ioengine=libaio
+direct=1
+runtime=180
+
+[name]
+ioscheduler=deadline
+ramp_time=30
+filename=/dev/sdb
+rw=randwrite
+size=5G
+bs=256k
+iodepth=32
+stonewall
+name: (g=0): rw=randwrite, bs=256K-256K/256K-256K, ioengine=libaio, iodepth=32
+2.0.8
+Starting 1 process
+
+name: (groupid=0, jobs=1): err= 0: pid=5719
+  write: io=3114.0MB, bw=68428KB/s, iops=266 , runt= 46600msec
+    slat (usec): min=15 , max=294 , avg=39.23, stdev= 8.99
+    clat (msec): min=104 , max=209 , avg=119.81, stdev= 2.88
+     lat (msec): min=104 , max=209 , avg=119.85, stdev= 2.88
+    clat percentiles (msec):
+     |  1.00th=[  115],  5.00th=[  118], 10.00th=[  119], 20.00th=[  120],
+     | 30.00th=[  120], 40.00th=[  120], 50.00th=[  121], 60.00th=[  121],
+     | 70.00th=[  121], 80.00th=[  121], 90.00th=[  121], 95.00th=[  122],
+     | 99.00th=[  124], 99.50th=[  124], 99.90th=[  169], 99.95th=[  190],
+     | 99.99th=[  204]
+    bw (KB/s)  : min=    8, max=71394, per=98.94%, avg=67703.31, stdev=7107.89
+    lat (msec) : 250=100.25%
+  cpu          : usr=0.69%, sys=2.00%, ctx=20488, majf=0, minf=22
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=164.6%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.1%, 64=0.0%, >=64=0.0%
+     issued    : total=r=0/w=12425/d=0, short=r=0/w=0/d=0
+
+Run status group 0 (all jobs):
+  WRITE: io=3114.0MB, aggrb=68427KB/s, minb=68427KB/s, maxb=68427KB/s, mint=46600msec, maxt=46600msec
+
+Disk stats (read/write):
+  sdb: ios=73/20386, merge=0/0, ticks=2210/2412210, in_queue=2416280, util=99.16%
+# 2013-05-15 17:40:17 UTC
+[global]
+clocksource=cpu
+randrepeat=0
+ioengine=libaio
+direct=1
+runtime=180
+
+[name]
+ioscheduler=deadline
+ramp_time=30
+filename=/dev/sdb
+rw=randread
+size=5G
+bs=128k
+iodepth=4
+stonewall
+name: (g=0): rw=randread, bs=128K-128K/128K-128K, ioengine=libaio, iodepth=4
+2.0.8
+Starting 1 process
+
+name: (groupid=0, jobs=1): err= 0: pid=5764
+  read : io=4286.8MB, bw=24382KB/s, iops=190 , runt=180038msec
+    slat (usec): min=11 , max=332 , avg=32.18, stdev= 9.46
+    clat (msec): min=1 , max=92 , avg=20.96, stdev= 9.12
+     lat (msec): min=1 , max=92 , avg=21.00, stdev= 9.12
+    clat percentiles (usec):
+     |  1.00th=[ 2736],  5.00th=[ 9152], 10.00th=[11584], 20.00th=[14272],
+     | 30.00th=[16192], 40.00th=[18048], 50.00th=[19584], 60.00th=[21376],
+     | 70.00th=[23680], 80.00th=[26752], 90.00th=[31616], 95.00th=[37120],
+     | 99.00th=[52480], 99.50th=[59648], 99.90th=[73216], 99.95th=[78336],
+     | 99.99th=[88576]
+    bw (KB/s)  : min=    4, max=25700, per=99.83%, avg=24338.51, stdev=1360.51
+    lat (msec) : 2=0.59%, 4=0.95%, 10=4.90%, 20=45.53%, 50=46.76%
+    lat (msec) : 100=1.29%
+  cpu          : usr=0.16%, sys=1.03%, ctx=39688, majf=0, minf=149
+  IO depths    : 1=0.1%, 2=0.1%, 4=116.7%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued    : total=r=34291/w=0/d=0, short=r=0/w=0/d=0
+
+Run status group 0 (all jobs):
+   READ: io=4286.8MB, aggrb=24381KB/s, minb=24381KB/s, maxb=24381KB/s, mint=180038msec, maxt=180038msec
+
+Disk stats (read/write):
+  sdb: ios=40072/0, merge=0/0, ticks=829730/0, in_queue=829770, util=99.31%
+# 2013-05-15 17:40:17 UTC
+[global]
+clocksource=cpu
+randrepeat=0
+ioengine=libaio
+direct=1
+runtime=180
+
+[name]
+ioscheduler=deadline
+ramp_time=30
+filename=/dev/sdb
+rw=randread
+size=5G
+bs=128k
+iodepth=32
+stonewall
+name: (g=0): rw=randread, bs=128K-128K/128K-128K, ioengine=libaio, iodepth=32
+2.0.8
+Starting 1 process
+
+name: (groupid=0, jobs=1): err= 0: pid=5865
+  read : io=4262.6MB, bw=24228KB/s, iops=189 , runt=180158msec
+    slat (usec): min=10 , max=480 , avg=31.19, stdev=10.45
+    clat (msec): min=134 , max=338 , avg=169.10, stdev=10.07
+     lat (msec): min=134 , max=338 , avg=169.14, stdev=10.07
+    clat percentiles (msec):
+     |  1.00th=[  151],  5.00th=[  155], 10.00th=[  159], 20.00th=[  161],
+     | 30.00th=[  165], 40.00th=[  167], 50.00th=[  169], 60.00th=[  172],
+     | 70.00th=[  174], 80.00th=[  176], 90.00th=[  182], 95.00th=[  186],
+     | 99.00th=[  202], 99.50th=[  208], 99.90th=[  233], 99.95th=[  251],
+     | 99.99th=[  318]
+    bw (KB/s)  : min=    4, max=25192, per=99.75%, avg=24165.48, stdev=1362.86
+    lat (msec) : 250=100.03%, 500=0.06%
+  cpu          : usr=0.25%, sys=0.91%, ctx=39438, majf=0, minf=1045
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=116.7%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.1%, 64=0.0%, >=64=0.0%
+     issued    : total=r=34069/w=0/d=0, short=r=0/w=0/d=0
+
+Run status group 0 (all jobs):
+   READ: io=4262.6MB, aggrb=24227KB/s, minb=24227KB/s, maxb=24227KB/s, mint=180158msec, maxt=180158msec
+
+Disk stats (read/write):
+  sdb: ios=39770/0, merge=0/0, ticks=6607010/0, in_queue=6609920, util=98.48%
+# 2013-05-15 17:40:17 UTC
+[global]
+clocksource=cpu
+randrepeat=0
+ioengine=libaio
+direct=1
+runtime=180
+
+[name]
+ioscheduler=deadline
+ramp_time=30
+filename=/dev/sdb
+rw=randread
+size=5G
+bs=256k
+iodepth=4
+stonewall
+name: (g=0): rw=randread, bs=256K-256K/256K-256K, ioengine=libaio, iodepth=4
+2.0.8
+Starting 1 process
+
+name: (groupid=0, jobs=1): err= 0: pid=5981
+  read : io=3933.6MB, bw=40418KB/s, iops=157 , runt= 99656msec
+    slat (usec): min=15 , max=382 , avg=39.27, stdev=12.08
+    clat (msec): min=1 , max=115 , avg=25.29, stdev=10.51
+     lat (msec): min=1 , max=115 , avg=25.33, stdev=10.51
+    clat percentiles (msec):
+     |  1.00th=[    5],  5.00th=[   13], 10.00th=[   15], 20.00th=[   18],
+     | 30.00th=[   20], 40.00th=[   22], 50.00th=[   24], 60.00th=[   26],
+     | 70.00th=[   29], 80.00th=[   32], 90.00th=[   38], 95.00th=[   44],
+     | 99.00th=[   63], 99.50th=[   71], 99.90th=[   87], 99.95th=[   98],
+     | 99.99th=[  116]
+    bw (KB/s)  : min=    8, max=45477, per=99.60%, avg=40256.97, stdev=3056.45
+    lat (msec) : 2=0.01%, 4=0.95%, 10=1.66%, 20=29.04%, 50=65.54%
+    lat (msec) : 100=2.78%, 250=0.04%
+  cpu          : usr=0.18%, sys=1.07%, ctx=20339, majf=0, minf=280
+  IO depths    : 1=0.1%, 2=0.1%, 4=130.2%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued    : total=r=15731/w=0/d=0, short=r=0/w=0/d=0
+
+Run status group 0 (all jobs):
+   READ: io=3933.6MB, aggrb=40418KB/s, minb=40418KB/s, maxb=40418KB/s, mint=99656msec, maxt=99656msec
+
+Disk stats (read/write):
+  sdb: ios=24867/0, merge=0/0, ticks=590380/0, in_queue=590440, util=98.44%
+# 2013-05-15 17:40:17 UTC
+[global]
+clocksource=cpu
+randrepeat=0
+ioengine=libaio
+direct=1
+runtime=180
+
+[name]
+ioscheduler=deadline
+ramp_time=30
+filename=/dev/sdb
+rw=randread
+size=5G
+bs=256k
+iodepth=32
+stonewall
+name: (g=0): rw=randread, bs=256K-256K/256K-256K, ioengine=libaio, iodepth=32
+2.0.8
+Starting 1 process
+
+name: (groupid=0, jobs=1): err= 0: pid=6048
+  read : io=3923.6MB, bw=40696KB/s, iops=158 , runt= 98724msec
+    slat (usec): min=16 , max=377 , avg=37.86, stdev=10.95
+    clat (msec): min=161 , max=347 , avg=201.45, stdev=11.45
+     lat (msec): min=161 , max=347 , avg=201.49, stdev=11.45
+    clat percentiles (msec):
+     |  1.00th=[  178],  5.00th=[  186], 10.00th=[  190], 20.00th=[  194],
+     | 30.00th=[  196], 40.00th=[  198], 50.00th=[  200], 60.00th=[  202],
+     | 70.00th=[  206], 80.00th=[  208], 90.00th=[  215], 95.00th=[  221],
+     | 99.00th=[  237], 99.50th=[  245], 99.90th=[  281], 99.95th=[  297],
+     | 99.99th=[  343]
+    bw (KB/s)  : min=    8, max=44366, per=99.56%, avg=40513.96, stdev=2994.16
+    lat (msec) : 250=99.82%, 500=0.38%
+  cpu          : usr=0.22%, sys=1.02%, ctx=20328, majf=0, minf=2072
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=130.6%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.1%, 64=0.0%, >=64=0.0%
+     issued    : total=r=15663/w=0/d=0, short=r=0/w=0/d=0
+
+Run status group 0 (all jobs):
+   READ: io=3923.6MB, aggrb=40695KB/s, minb=40695KB/s, maxb=40695KB/s, mint=98724msec, maxt=98724msec
+
+Disk stats (read/write):
+  sdb: ios=21073/0, merge=0/0, ticks=4189670/0, in_queue=4192650, util=99.23%
