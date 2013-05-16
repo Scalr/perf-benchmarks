@@ -39,7 +39,7 @@ fi
 
 RW="randwrite"
 
-for BS in 64k 128k
+for BS in 16k 64k 128k
 do
     for DEPTH in 1 4
     do
@@ -52,7 +52,7 @@ done
 
 RW="randread"
 
-for BS in 64k 128k
+for BS in 16k 64k 128k
 do
     for DEPTH in 1 4
     do
