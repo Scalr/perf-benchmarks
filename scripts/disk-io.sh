@@ -14,7 +14,9 @@ DIR=$HOME
 RES_DIR=$DIR/perf-benchmarks/results/disk-io
 
 if [ "$CLOUD" == "ec2" ]; then
-    set -- `ec2metadata | grep instance-type`
+    wget http://s3.amazonaws.com/ec2metadata/ec2-metadata
+    chmod +x ec2-metadata
+    set -- $(ec2-metadata -t)
     TYPE=$2
 elif [ "$CLOUD" == "gce" ]; then
     line=$(gcutil getinstance $HOSTNAME | grep 'machine')
