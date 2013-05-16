@@ -39,9 +39,9 @@ fi
 
 RW="randwrite"
 
-for BS in 128k 256k
+for BS in 64k 128k
 do
-    for DEPTH in 4 32
+    for DEPTH in 1 4
     do
         echo "# $DATE $TIME UTC" | tee -a $LOG
         /bin/bash $DIR/perf-benchmarks/scripts/config-generator.sh $RW-$SIZE-$BS-$DEPTH $FILE $SIZE $RW $BS $DEPTH /tmp/fio.conf
@@ -52,9 +52,9 @@ done
 
 RW="randread"
 
-for BS in 128k 256k
+for BS in 64k 128k
 do
-    for DEPTH in 4 32
+    for DEPTH in 1 4
     do
         echo "# $DATE $TIME UTC" | tee -a $LOG
         /bin/bash $DIR/perf-benchmarks/scripts/config-generator.sh $RW-$SIZE-$BS-$DEPTH $FILE $SIZE $RW $BS $DEPTH /tmp/fio.conf
