@@ -22,6 +22,7 @@ ramp_time=30
 filename=$FILE
 rw=$RW
 size=$SIZE
+rate_iops=4000
 bs=$BS
 iodepth=$DEPTH
 stonewall
