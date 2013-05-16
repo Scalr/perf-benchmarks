@@ -42,7 +42,7 @@ do
     for DEPTH in 4 32
     do
         echo "# $DATE $TIME UTC" | tee -a $LOG
-        /bin/bash $DIR/perf-benchmarks/scripts/config-generator.sh name $FILE $SIZE $RW $BS $DEPTH /tmp/fio.conf
+        /bin/bash $DIR/perf-benchmarks/scripts/config-generator.sh $RW-$SIZE-$BS-$DEPTH $FILE $SIZE $RW $BS $DEPTH /tmp/fio.conf
         cat /tmp/fio.conf >>$LOG
         sudo fio --timeout=330 /tmp/fio.conf | tee -a $LOG
     done
@@ -55,7 +55,7 @@ do
     for DEPTH in 4 32
     do
         echo "# $DATE $TIME UTC" | tee -a $LOG
-        /bin/bash $DIR/perf-benchmarks/scripts/config-generator.sh name $FILE $SIZE $RW $BS $DEPTH /tmp/fio.conf
+        /bin/bash $DIR/perf-benchmarks/scripts/config-generator.sh $RW-$SIZE-$BS-$DEPTH $FILE $SIZE $RW $BS $DEPTH /tmp/fio.conf
         cat /tmp/fio.conf >>$LOG
         sudo fio --timeout=330 /tmp/fio.conf | tee -a $LOG
     done
