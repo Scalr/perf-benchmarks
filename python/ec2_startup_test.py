@@ -11,7 +11,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
 
     parser.add_argument('-n', '--number', type=int, default=1, help='number of instances for start')
-    parser.add_argument('-i', '--interval', default=60, type=int, help='intervar between starts')
+    parser.add_argument('-i', '--interval', default=60, type=int, help='interval between starts')
 
     args = parser.parse_args()
 

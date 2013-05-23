@@ -15,15 +15,16 @@ import util
 
 def netrwork_io_test(itype1, image1, region1, itype2, image2, region2, filesize='64M', iteration=1, timeout=600): 
     
+    ssh_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../.ssh/')
     if itype1 in ec2.ec2_instance_types:
-        inst1 = ec2.EC2Inst(itype1, image1, region1, 'ubuntu', '%s/.ssh/perf-bench-%s.pem' % (os.environ['HOME'], region1),
-                            'perf-bench-%s' % region1)
+        inst1 = ec2.EC2Inst(itype1, image1, region1, 'ubuntu', '%s/perf-bench-%s.pem'\
+                            % (ssh_path, region1), 'perf-bench-%s' % region1)
     if itype1 in gce.gce_instance_types:
         inst1 = gce.GCEInst(itype1, image1, region1, os.environ['USER'], '%s/.ssh/google_compute_engine' % os.environ['HOME'])
 
     if itype2 in ec2.ec2_instance_types:
-        inst2 = ec2.EC2Inst(itype2, image2, region2, 'ubuntu', '%s/.ssh/perf-bench-%s.pem' % (os.environ['HOME'], region2),
-                            'perf-bench-%s' % region2)
+        inst2 = ec2.EC2Inst(itype2, image2, region2, 'ubuntu', '%s/perf-bench-%s.pem'\
+                            % (ssh_path, region2), 'perf-bench-%s' % region2)
     if itype2 in gce.gce_instance_types:
         inst2 = gce.GCEInst(itype2, image2, region2, os.environ['USER'], '%s/.ssh/google_compute_engine' % os.environ['HOME'])
 
@@ -128,7 +129,7 @@ def netrwork_io_test(itype1, image1, region1, itype2, image2, region2, filesize=
             print '[END] scp'
 
             print '[START] iperf'
-            threads = [1, 4] 
+            threads = [1, 4, 8] 
             work_time = 5
             stdin, stdout, stderr = ssh_cli.exec_command('python /tmp/iperftest.py -i %s -u %s -k %s -p %s -t %s'
                                  % (inst2.remote_ip, inst2.user, inst2.ssh_key, ' '.join(map(str, threads)), work_time))

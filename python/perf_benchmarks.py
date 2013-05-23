@@ -10,11 +10,11 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
 
     parser.add_argument('-t', '--type', default=None, help='test type <network-io|disk-io>')
-    parser.add_argument('-i', '--instance', default=None, help='instance type')
+    parser.add_argument('-i', '--instance', default=None, help='instance type <m1.small|n1-standard-1|etc>')
     parser.add_argument('-c', '--cloud', default='ec2', help='cloud platform for test <ec2|gce>')
     parser.add_argument('-m', '--mode', default=None, help='region mode <us-us|eu-us> for network-io test')
     parser.add_argument('-n', '--number', default=1, type=int, help='number of test iterations')
-    parser.add_argument('-s', '--size', default='1024M', help='file size')
+    parser.add_argument('-s', '--size', default='1024M', help='file size, 1024M for example')
     parser.add_argument('-T', '--timeout', default=360, type=int, help='timeout for netcat and scp test, seconds')
 
     args = parser.parse_args()
