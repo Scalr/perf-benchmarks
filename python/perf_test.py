@@ -58,7 +58,7 @@ if __name__ == '__main__':
             zone2 = regions[args.cloud][args.mode]['region2']
         
             network_io.netrwork_io_test(args.instance, google_image, zone1, args.instance,
-                    google_image, zone2, filesize=args.timeout, iteration=int(args.number), timeout=args.timeout) 
+                    google_image, zone2, filesize=args.size, iteration=int(args.number), timeout=args.timeout) 
 
     print 'Tests finish in %s seconds' % (time.time() - start_time)
 
