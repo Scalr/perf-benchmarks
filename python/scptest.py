@@ -36,8 +36,7 @@ find . -name "scp.*" -exec rm {} \;\n\
 
         cmd = "screen -m -d /bin/bash /tmp/scp.sh"
         if subps.call(cmd.split(), stderr=file('scp.err', 'w')):
-            with open('scp.err', 'r') as f:
-                raise SCPError(f.read())
+            raise SCPError()
 
         time.sleep(1)
 
@@ -53,18 +52,11 @@ find . -name "scp.*" -exec rm {} \;\n\
             raise SCPTimeout('timeout %s' % timeout)
 
         if os.path.exists("scp.err") and os.path.getsize("scp.err") > 0:
-            with open("scp.err", 'r') as f:
-                raise SCPError(f.read())
-
-    except SCPError, e:
-        report.update({'error':'%s' % e})
-
-    except SCPTimeout, e:
-        report.update({'error':'%s' % e})
+            raise SCPError()
 
     except Exception, e:
         with open("iperf.err", 'r') as f:
-            report.update({'error':'%s;%s' % (e, f.read())})
+            report.update({'error':'%s;%s;%s' % (e.__class__.__name__, e, f.read())})
 
     finally:
         with open('scp.report', 'w') as f:

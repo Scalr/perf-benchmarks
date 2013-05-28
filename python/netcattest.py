@@ -32,13 +32,11 @@ nc -l 7777 >/dev/null 2>>netcat.err\n'
 
         cmd = ["ssh", "%s@%s" % (user, ip), "echo '%s' >/tmp/netcat.sh" % netcat_sh] 
         if subps.call(cmd, stderr=file('netcat.err', 'w')):
-            with open('netcat.err', 'r') as f:
-                raise NetCatError(f.read())
+            raise NetCatError()
 
         cmd = ["ssh", "%s@%s" % (user, ip), "screen -m -d bash /tmp/netcat.sh"] 
         if subps.call(cmd, stderr=file('netcat.err', 'w')):
-            with open('netcat.err', 'r') as f:
-                raise NetCatError(f.read())
+            raise NetCatError()
 
         for i in range(3):
             cmd = ["ssh", "%s@%s" % (user, ip), "ps aux | grep -v grep | grep 'nc -l 7777'"] 
@@ -66,8 +64,7 @@ find . -name "netcat.*" -exec rm {} \;\n\
 
         cmd = "screen -m -d /bin/bash /tmp/netcat.sh"
         if subps.call(cmd.split(), stderr=file('netcat.err', 'w')):
-            with open('netcat.err', 'r') as f:
-                raise NetCatError(f.read())
+            raise NetCatError()
 
         time.sleep(1)
 
@@ -83,18 +80,11 @@ find . -name "netcat.*" -exec rm {} \;\n\
             raise NetCatTimeout('timeout %s' % timeout)
 
         if os.path.exists("netcat.err") and os.path.getsize("netcat.err") > 0:
-            with open("netcat.err", 'r') as f:
-                raise NetCatError(f.read())
-
-    except NetCatError, e:
-        report.update({'error':'%s' % e})
-
-    except NetCatTimeout, e:
-        report.update({'error':'%s' % e})
+            raise NetCatError()
 
     except Exception, e:
         with open("iperf.err", 'r') as f:
-            report.update({'error':'%s;%s' % (e, f.read())})
+            report.update({'error':'%s;%s;%s' % (e.__class__.__name__, e, f.read())})
 
     finally:
         with open('netcat.report', 'w') as f:

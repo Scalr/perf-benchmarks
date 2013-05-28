@@ -32,13 +32,11 @@ iperf -s -p 1234 1>/dev/null 2>iperf.err\n'
 
         cmd = ["ssh", "%s@%s" % (user, ip), "echo '%s' >/tmp/iperf.sh" % iperf_sh] 
         if subps.call(cmd, stderr=file('iperf.err', 'w')):
-            with open('iperf.err', 'r') as f:
-                raise IPerfError(f.read())
+            raise IPerfError()
 
         cmd = ["ssh", "%s@%s" % (user, ip), "screen -m -d bash /tmp/iperf.sh"] 
         if subps.call(cmd, stderr=file('iperf.err', 'w')):
-            with open('iperf.err', 'r') as f:
-                raise IPerfError(f.read())
+            raise IPerfError()
 
         for i in range(3):
             cmd = ["ssh", "%s@%s" % (user, ip), "ps aux | grep -v grep | grep 'iperf -s -p 1234'"] 
@@ -73,8 +71,7 @@ iperf -c $IP -p 1234 -P $P -t $T -f m 2>iperf.err | grep "Mbits/sec" &>iperf.dat
         for p in threads:
             cmd = "screen -m -d /bin/bash /tmp/iperf.sh %s %s %s" % (ip, p, work_time)
             if subps.call(cmd.split(), stderr=file('iperf.err', 'w')):
-                with open('iperf.err', 'r') as f:
-                    raise IPerfError(f.read())
+                raise IPerfError()
 
             time.sleep(work_time + 1)
 
@@ -99,18 +96,11 @@ iperf -c $IP -p 1234 -P $P -t $T -f m 2>iperf.err | grep "Mbits/sec" &>iperf.dat
                 raise IPerfTimeout('timeout')
 
         if os.path.exists("iperf.err") and os.path.getsize("iperf.err") > 0:
-            with open("iperf.err", 'r') as f:
-                raise IPerfError(f.read())
-
-    except IPerfError, e:
-        report.update({'error':'%s' % e})
-
-    except IPerfTimeout, e:
-        report.update({'error':'%s' % e})
+            raise IPerfError()
 
     except Exception, e:
         with open("iperf.err", 'r') as f:
-            report.update({'error':'%s;%s' % (e, f.read())})
+            report.update({'error':'%s;%s;%s' % (e.__class__.__name__, e, f.read())})
 
     finally:
         with open('iperf.report', 'w') as f:
