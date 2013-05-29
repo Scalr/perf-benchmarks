@@ -10,7 +10,7 @@ if __name__ == '__main__':
     parser.add_argument('-f', '--file', default='/tmp/fio.file', help='file or device name')
     parser.add_argument('-s', '--size', default='1G', help='file size')
     parser.add_argument('-m', '--mode', default='randrw', help='rw mode')
-    parser.add_argument('-b', '--bs', default='1k', help='block size')
+    parser.add_argument('-b', '--bs', default='1K', help='block size')
     parser.add_argument('-d', '--depth', default='1', help='io depth')
     parser.add_argument('-t', '--runtime', type=int, default=120,  help='runtime')
     parser.add_argument('-o', '--out', default='/tmp/fio_conf.fio', help='fio config output')

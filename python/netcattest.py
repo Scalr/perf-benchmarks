@@ -57,7 +57,7 @@ nc -l 7777 >/dev/null 2>>netcat.err\n'
 #!/bin/bash\n\
 sudo killall -9 nc &>/dev/null\n\
 find . -name "netcat.*" -exec rm {} \;\n\
-/usr/bin/time -f "%%e" -o netcat.time head -c %s /dev/zero 2>>netcat.err | nc %s 7777 2>>netcat.err\n' % (filesize, ip)
+/usr/bin/time -f "%%e" -o netcat.time head -c %sM /dev/zero 2>>netcat.err | nc %s 7777 2>>netcat.err\n' % (filesize, ip)
 
         with open('/tmp/netcat.sh', 'w') as fo:
             fo.write(netcat_sh)
@@ -98,8 +98,8 @@ if __name__ == '__main__':
     parser.add_argument('-i', '--ip', default=None, help='ip address')
     parser.add_argument('-u', '--user', default=None, help='user')
     parser.add_argument('-k', '--key', default=None, help='ssh key')
-    parser.add_argument('-s', '--size', default=None, help='file size')
-    parser.add_argument('-t', '--timeout', default=60, type=int, help='timeout')
+    parser.add_argument('-s', '--size', type=int, default=64, help='file size in MB')
+    parser.add_argument('-t', '--timeout', default=None, type=int, help='timeout')
 
     args = parser.parse_args()
 

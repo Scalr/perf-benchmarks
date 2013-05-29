@@ -23,7 +23,7 @@ def fio_test(filename, filesize, mode, bs, depth, runtime):
             for b in bs:
                 for d in depth:
 
-                    cmd = 'python /tmp/fio_conf_generator.py -n %s-%s-%s -f %s -s %s -m %s -b %s -d %s -t %s -o /tmp/fio.conf'\
+                    cmd = 'python2.7 /tmp/fio_conf_generator.py -n %s-%s-%s -f %s -s %sM -m %s -b %sK -d %s -t %s -o /tmp/fio.conf'\
                             % (m, b, d, filename, filesize, m, b, d, runtime)
                     if subps.call(cmd.split(), stderr=file('fio.err', 'w')):
                         raise FIOError()
@@ -35,7 +35,7 @@ def fio_test(filename, filesize, mode, bs, depth, runtime):
                         config = f.read()
                     cmd = 'sudo fio --timeout=%s /tmp/fio.conf' % (runtime + 30)
                     try:
-                        out = subps.check_output(cmd.split(), stderr=file('fio.err', 'w'))
+                        out = subps.check_output(cmd, stderr=file('fio.err', 'w'), shell=True)
                         report.append({'datetime':time_str, 'config':config, 'data':out})
                     except Exception, e:
                         with open('fio.err', 'r') as f:
@@ -56,11 +56,11 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
 
     parser.add_argument('-f', '--file', default='/tmp/fio.file', help='file or device')
-    parser.add_argument('-s', '--size', default='128M', help='filesize')
+    parser.add_argument('-s', '--size', default=128, type=int, help='filesize in MB')
     parser.add_argument('-m', '--mode', nargs='+', type=str, default=['randrw'], help='mode <read|write|randread|randwrite|randrw>')
-    parser.add_argument('-b', '--bs', nargs='+', type=str, default='1k', help='block size')
+    parser.add_argument('-b', '--bs', nargs='+', type=int, default=1, help='block size in KB')
     parser.add_argument('-d', '--depth', nargs='+', type=int, default=1, help='iodepth')
-    parser.add_argument('-t', '--runtime', type=int, default=120, help='runtime')
+    parser.add_argument('-t', '--runtime', type=int, default=None, help='runtime')
 
     args = parser.parse_args()
 

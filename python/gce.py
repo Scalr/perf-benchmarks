@@ -1,5 +1,4 @@
 
-import os
 import random
 
 import subprocess as subps
@@ -38,8 +37,11 @@ class GCEInst(object):
         self.user = user
         self.ssh_key = ssh_key  #'%s/.ssh/google_compute_engine' % os.environ['HOME']
         self.cloud = 'gce'
+        self.disk_name = None
 
-    def launch(self):
+        self.distr = 'debian'
+
+    def launch(self, disk_size=None):
         print '[LAUNCHING] %s | %s | %s | %s' % (self.itype, self.image, self.region, self.user)
 
         self.name = '%s-%s%s' % (self.itype, random.randint(100, 999), random.randint(100, 999))
@@ -54,6 +56,35 @@ class GCEInst(object):
         print p.stderr.read() 
         print p.stdout.read()
 
+        if disk_size:
+            self.disk_name = '%s-fiodisk' % self.name
+
+            p = subps.Popen(['/usr/local/bin/gcutil',
+                         '--project=scalr.com:scalr-labs',
+                         'adddisk',
+                         '--size_gb=%s' % disk_size,
+                         self.disk_name,
+                         '--zone=%s' % self.region], stdout=subps.PIPE, stderr=subps.PIPE)
+            print p.stderr.read() 
+            print p.stdout.read()
+
+
+            p = subps.Popen(['/usr/local/bin/gcutil',
+                         '--project=scalr.com:scalr-labs',
+                         'getdisk',
+                         self.disk_name], stdout=subps.PIPE, stderr=subps.PIPE)
+            print p.stderr.read() 
+            print p.stdout.read()
+
+            p = subps.Popen(['/usr/local/bin/gcutil',
+                         '--project=scalr.com:scalr-labs',
+                         'attachdisk',
+                         '--disk',
+                         self.disk_name,
+                         self.name], stdout=subps.PIPE, stderr=subps.PIPE)
+            print p.stderr.read() 
+            print p.stdout.read()
+
     def update(self):
 
         p = subps.Popen(['/usr/local/bin/gcutil',
@@ -67,13 +98,41 @@ class GCEInst(object):
                 self.remote_ip = line.split('|')[2].strip()
 
     def terminate(self):
-        print '[TERMINATING] %s | %s | %s | %s' % (self.itype, self.image, self.region, self.user)
+        if self.disk_name:
+            print '[DETACHING] %s' % self.disk_name
+            p = subps.Popen(['/usr/local/bin/gcutil',
+                         '--project=scalr.com:scalr-labs',
+                         'detachdisk',
+                         '--device_name',
+                         self.disk_name,
+                         self.name], stdout=subps.PIPE, stderr=subps.PIPE)
+            print p.stderr.read() 
+            print p.stdout.read()
 
-        p = subps.Popen(['/usr/local/bin/gcutil',
-                '--project=scalr.com:scalr-labs',
-                'deleteinstance',
-                self.name],
-                stdin=subps.PIPE, stdout=subps.PIPE, stderr=subps.PIPE)
-        p.communicate(input='yes')
+            print '[TERMINATING] %s | %s | %s | %s' % (self.itype, self.image, self.region, self.user)
+            p = subps.Popen(['/usr/local/bin/gcutil',
+                    '--project=scalr.com:scalr-labs',
+                    'deleteinstance',
+                    self.name],
+                    stdin=subps.PIPE, stdout=subps.PIPE, stderr=subps.PIPE)
+            p.communicate(input='yes')
+            print '[TERMINATED]'
 
-        print '[TERMINATED]'
+            print '[DELETING] %s' % self.disk_name
+            p = subps.Popen(['/usr/local/bin/gcutil',
+                         '--project=scalr.com:scalr-labs',
+                         'deletedisk',
+                         self.disk_name], stdin=subps.PIPE, stdout=subps.PIPE, stderr=subps.PIPE)
+            p.communicate(input='y')
+            self.disk_name = None
+            print '[DELETED]'
+
+        else:
+            print '[TERMINATING] %s | %s | %s | %s' % (self.itype, self.image, self.region, self.user)
+            p = subps.Popen(['/usr/local/bin/gcutil',
+                    '--project=scalr.com:scalr-labs',
+                    'deleteinstance',
+                    self.name],
+                    stdin=subps.PIPE, stdout=subps.PIPE, stderr=subps.PIPE)
+            p.communicate(input='yes')
+            print '[TERMINATED]'

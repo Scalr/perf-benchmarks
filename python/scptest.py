@@ -18,7 +18,7 @@ class SCPTimeout(Exception):
 utcnow = datetime.datetime.utcnow()
 time_str = utcnow.strftime('%d:%m:%Y %H:%M') 
 
-def scp_test(ip, user, ssh_key, filesize='64M', timeout=300):
+def scp_test(ip, user, ssh_key, filesize=64, timeout=300):
 
     report = {'datetime':time_str}
 
@@ -28,7 +28,7 @@ def scp_test(ip, user, ssh_key, filesize='64M', timeout=300):
 #!/bin/bash\n\
 sudo killall -9 scp &>/dev/null\n\
 find . -name "scp.*" -exec rm {} \;\n\
-/usr/bin/time -f "%%e" -o scp.time head -c %s /dev/zero 2>>scp.err | ssh %s@%s "cat>/dev/null" 2>>scp.err\n'\
+/usr/bin/time -f "%%e" -o scp.time head -c %sM /dev/zero 2>>scp.err | ssh %s@%s "cat>/dev/null" 2>>scp.err\n'\
             % (filesize, user, ip)
 
         with open('/tmp/scp.sh', 'w') as fo:
@@ -70,8 +70,8 @@ if __name__ == '__main__':
     parser.add_argument('-i', '--ip', default=None, help='ip address')
     parser.add_argument('-u', '--user', default=None, help='user')
     parser.add_argument('-k', '--key', default=None, help='ssh key')
-    parser.add_argument('-s', '--size', default=None, help='file size')
-    parser.add_argument('-t', '--timeout', default=60, type=int, help='timeout')
+    parser.add_argument('-s', '--size', type=int, default=32, help='file size in MB')
+    parser.add_argument('-t', '--timeout', default=None, type=int, help='timeout')
 
     args = parser.parse_args()
 

@@ -14,7 +14,7 @@ import gce
 import util
 
 
-def netrwork_io_test(itype1, image1, region1, itype2, image2, region2, filesize='64M', iteration=1, timeout=600): 
+def network_io_test(itype1, image1, region1, itype2, image2, region2, filesize=64, iteration=1, timeout=600): 
     
     ssh_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../.ssh/')
 
@@ -75,7 +75,7 @@ def netrwork_io_test(itype1, image1, region1, itype2, image2, region2, filesize=
             print '[START ITERATION %s]' % i
 
             print '[START] netcat'
-            stdin, stdout, stderr = ssh_cli.exec_command('python /tmp/netcattest.py -i %s -u %s -k %s -s %s -t %s'
+            stdin, stdout, stderr = ssh_cli.exec_command('python2.7 /tmp/netcattest.py -i %s -u %s -k %s -s %s -t %s'
                                  % (inst2.remote_ip, inst2.user, inst2.ssh_key, filesize, timeout))
             for _ in range(timeout / 5 + 1):
                 stdin, stdout, stderr = ssh_cli.exec_command('[ -f netcat.report ]; echo $?')
@@ -100,7 +100,7 @@ def netrwork_io_test(itype1, image1, region1, itype2, image2, region2, filesize=
             print '[END] netcat'
 
             print '[START] scp'
-            stdin, stdout, stderr = ssh_cli.exec_command('python /tmp/scptest.py -i %s -u %s -k %s -s %s -t %s'
+            stdin, stdout, stderr = ssh_cli.exec_command('python2.7 /tmp/scptest.py -i %s -u %s -k %s -s %s -t %s'
                                  % (inst2.remote_ip, inst2.user, inst2.ssh_key, filesize, timeout))
             for _ in range(timeout / 5 + 1):
                 stdin, stdout, stderr = ssh_cli.exec_command('[ -f scp.report ]; echo $?')
@@ -127,7 +127,7 @@ def netrwork_io_test(itype1, image1, region1, itype2, image2, region2, filesize=
             print '[START] iperf'
             threads = [1, 4, 8] 
             work_time = 5
-            stdin, stdout, stderr = ssh_cli.exec_command('python /tmp/iperftest.py -i %s -u %s -k %s -p %s -t %s'
+            stdin, stdout, stderr = ssh_cli.exec_command('python2.7 /tmp/iperftest.py -i %s -u %s -k %s -p %s -t %s'
                                  % (inst2.remote_ip, inst2.user, inst2.ssh_key, ' '.join(map(str, threads)), work_time))
             for _ in range(len(threads) * (work_time + 10) / 5 + 1):
                 stdin, stdout, stderr = ssh_cli.exec_command('[ -f iperf.report ]; echo $?')
@@ -170,7 +170,7 @@ if __name__ == '__main__':
     parser.add_argument('-i', '--instance', default=None, help='instance type <m1.small|n1-standard-1|etc>')
     parser.add_argument('-m', '--mode', default=None, help='region mode <us-us|eu-us> for network-io test')
     parser.add_argument('-n', '--number', default=1, type=int, help='number of test iterations')
-    parser.add_argument('-s', '--size', default='1024M', help='file size, 1024M for example')
+    parser.add_argument('-s', '--size', default=1, type=int, help='file size in MB')
     parser.add_argument('-t', '--timeout', default=360, type=int, help='timeout for netcat and scp test, seconds')
 
     args = parser.parse_args()
@@ -201,7 +201,7 @@ if __name__ == '__main__':
         region1 = regions['ec2'][args.mode]['region1']
         region2 = regions['ec2'][args.mode]['region2']
     
-        netrwork_io_test(args.instance, ec2_images[region1], region1, args.instance,
+        network_io_test(args.instance, ec2_images[region1], region1, args.instance,
                 ec2_images[region2], region2, filesize=args.size, iteration=int(args.number), timeout=args.timeout) 
     
     if args.instance in gce.gce_instance_types:
@@ -211,7 +211,7 @@ if __name__ == '__main__':
         zone1 = regions['gce'][args.mode]['region1']
         zone2 = regions['gce'][args.mode]['region2']
     
-        netrwork_io_test(args.instance, google_image, zone1, args.instance,
+        network_io_test(args.instance, google_image, zone1, args.instance,
                 google_image, zone2, filesize=args.size, iteration=int(args.number), timeout=args.timeout) 
 
     print 'Tests finish in %s seconds' % (time.time() - start_time)

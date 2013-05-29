@@ -4,6 +4,8 @@ import scp
 import paramiko
 import traceback
 
+import subprocess as subps
+
 
 '''
 def magic(func, *args, **kwargs):
@@ -56,7 +58,7 @@ def instances_prepare(instances, packages=[]):
                 #print stderr.read()
 
                 for another_inst in [i for i in instances if i != inst]:
-                    stdin, stdout, stderr = ssh_cli.exec_command('sudo ssh-keyscan %s >>$HOME/.ssh/known_hosts'\
+                    stdin, stdout, stderr = ssh_cli.exec_command('ssh-keyscan %s >>$HOME/.ssh/known_hosts'\
                                                                  % another_inst.remote_ip)
                     #print stderr.read()
 
@@ -65,8 +67,17 @@ def instances_prepare(instances, packages=[]):
                     #print stderr.read()
 
                 for pkg in packages:
-                    stdin, stdout, stderr = ssh_cli.exec_command(
-                            'export DEBIAN_FRONTEND=noninteractive;sudo apt-get install -y %s' % pkg)
+                    print '[INSTALL] %s' % pkg
+                    if inst.distr == 'debian':
+                        manager = 'apt-get'
+                    if inst.distr == 'centos':
+                        manager = 'yum'
+                        opt = '-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
+                        cmd = 'ssh -t -i %s -l %s %s %s' % (inst.ssh_key, inst.user, opt, inst.remote_ip)
+                        remote_cmd = "sudo sed -i -e 's/^Defaults.*requiretty/# &/' /etc/sudoers"
+                        subps.call(cmd.split() + [remote_cmd])
+
+                    stdin, stdout, stderr = ssh_cli.exec_command('sudo %s install -y %s' % (manager, pkg))
                     print stderr.read()
                     print stdout.read()
 

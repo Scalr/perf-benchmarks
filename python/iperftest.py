@@ -116,7 +116,7 @@ if __name__ == '__main__':
     parser.add_argument('-u', '--user', default=None, help='user')
     parser.add_argument('-k', '--key', default=None, help='ssh key')
     parser.add_argument('-p', '--threads', nargs='+', type=int, default=1, help='threads list')
-    parser.add_argument('-t', '--worktime', default=10, type=int, help='working time')
+    parser.add_argument('-t', '--worktime', default=None, type=int, help='working time')
 
     args = parser.parse_args()
 
