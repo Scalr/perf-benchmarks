@@ -8,6 +8,8 @@ import paramiko
 import telnetlib
 import traceback
 
+import subprocess as subps
+
 import ec2
 import gce
 
@@ -77,6 +79,7 @@ def network_io_test(itype1, image1, region1, itype2, image2, region2, filesize=6
             print '[START] netcat'
             stdin, stdout, stderr = ssh_cli.exec_command('python2.7 /tmp/netcattest.py -i %s -u %s -k %s -s %s -t %s'
                                  % (inst2.remote_ip, inst2.user, inst2.ssh_key, filesize, timeout))
+            time.sleep(10)
             for _ in range(timeout / 5 + 1):
                 stdin, stdout, stderr = ssh_cli.exec_command('[ -f netcat.report ]; echo $?')
                 out = stdout.read()
@@ -89,7 +92,8 @@ def network_io_test(itype1, image1, region1, itype2, image2, region2, filesize=6
                     report.update({'cloud1':inst1.cloud, 'cloud2':inst2.cloud})
                     report_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../results/network-io/netcat')
                     if not os.path.exists(report_path):
-                        os.mkdir(report_path)
+                        subps.call('mkdir -p %s'.split() % report_path)
+                        #os.mkdir(report_path)
                     with open('%s/%s-%s__%s-%s' % (report_path, inst1.itype, inst1.region, inst2.itype, inst2.region), 'a+') as f:
                         f.write(json.dumps(report, indent=4, sort_keys=True))
                         f.write('\n')
@@ -102,6 +106,7 @@ def network_io_test(itype1, image1, region1, itype2, image2, region2, filesize=6
             print '[START] scp'
             stdin, stdout, stderr = ssh_cli.exec_command('python2.7 /tmp/scptest.py -i %s -u %s -k %s -s %s -t %s'
                                  % (inst2.remote_ip, inst2.user, inst2.ssh_key, filesize, timeout))
+            time.sleep(10)
             for _ in range(timeout / 5 + 1):
                 stdin, stdout, stderr = ssh_cli.exec_command('[ -f scp.report ]; echo $?')
                 out = stdout.read()
@@ -114,8 +119,9 @@ def network_io_test(itype1, image1, region1, itype2, image2, region2, filesize=6
                     report.update({'cloud1':inst1.cloud, 'cloud2':inst2.cloud})
                     report_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../results/network-io/scp')
                     if not os.path.exists(report_path):
-                        os.mkdir(report_path)
-                    with open('%s/%s-%s__%s-%s' % (report_path, inst1.itype, inst1.region, inst2.itype, inst2.region), 'a+') as f:
+                        subps.call('mkdir -p %s' % report_path)
+                        #os.mkdir(report_path)
+                    with open('%s/%s-%s__%s-%s'.split() % (report_path, inst1.itype, inst1.region, inst2.itype, inst2.region), 'a+') as f:
                         f.write(json.dumps(report, indent=4, sort_keys=True))
                         f.write('\n')
                     print report['time']
@@ -129,6 +135,7 @@ def network_io_test(itype1, image1, region1, itype2, image2, region2, filesize=6
             work_time = 5
             stdin, stdout, stderr = ssh_cli.exec_command('python2.7 /tmp/iperftest.py -i %s -u %s -k %s -p %s -t %s'
                                  % (inst2.remote_ip, inst2.user, inst2.ssh_key, ' '.join(map(str, threads)), work_time))
+            time.sleep(10)
             for _ in range(len(threads) * (work_time + 10) / 5 + 1):
                 stdin, stdout, stderr = ssh_cli.exec_command('[ -f iperf.report ]; echo $?')
                 out = stdout.read()
@@ -141,7 +148,8 @@ def network_io_test(itype1, image1, region1, itype2, image2, region2, filesize=6
                     report.update({'cloud1':inst1.cloud, 'cloud2':inst2.cloud})
                     report_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../results/network-io/iperf')
                     if not os.path.exists(report_path):
-                        os.mkdir(report_path)
+                        subps.call('mkdir -p %s'.split() % report_path)
+                        #os.mkdir(report_path)
                     with open('%s/%s-%s__%s-%s' % (report_path, inst1.itype, inst1.region, inst2.itype, inst2.region), 'a+') as f:
                         f.write(json.dumps(report, indent=4, sort_keys=True))
                         f.write('\n')

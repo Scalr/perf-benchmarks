@@ -21,7 +21,7 @@ if __name__ == '__main__':
         f.write('[global]\n')
         f.write('clocksource=cpu\n')
         f.write('ioscheduler=deadline\n')
-        f.write('ramp_time=30\n')
+        f.write('ramp_time=15\n')
         f.write('randrepeat=0\n')
         f.write('ioengine=libaio\n')
         f.write('direct=1\n')

@@ -38,7 +38,7 @@ nc -l 7777 >/dev/null 2>>netcat.err\n'
         if subps.call(cmd, stderr=file('netcat.err', 'w')):
             raise NetCatError()
 
-        for i in range(3):
+        for i in range(5):
             cmd = ["ssh", "%s@%s" % (user, ip), "ps aux | grep -v grep | grep 'nc -l 7777'"] 
             try:
                 out = subps.check_output(cmd, stderr=file('netcat.err', 'w'))
@@ -47,7 +47,7 @@ nc -l 7777 >/dev/null 2>>netcat.err\n'
             if out:
                 break
             else:
-                time.sleep(2)
+                time.sleep(1)
         else:
             cmd = ["ssh", "%s@%s" % (user, ip), "cat netcat.err'"] 
             error = subps.check_output(cmd, stderr=file('netcat.err', 'w'))

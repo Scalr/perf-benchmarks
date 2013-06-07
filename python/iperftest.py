@@ -38,7 +38,7 @@ iperf -s -p 1234 1>/dev/null 2>iperf.err\n'
         if subps.call(cmd, stderr=file('iperf.err', 'w')):
             raise IPerfError()
 
-        for i in range(3):
+        for i in range(5):
             cmd = ["ssh", "%s@%s" % (user, ip), "ps aux | grep -v grep | grep 'iperf -s -p 1234'"] 
             try:
                 out = subps.check_output(cmd, stderr=file('iperf.err', 'w'))
@@ -47,7 +47,7 @@ iperf -s -p 1234 1>/dev/null 2>iperf.err\n'
             if out:
                 break
             else:
-                time.sleep(2)
+                time.sleep(1)
         else:
             cmd = ["ssh", "%s@%s" % (user, ip), "'cat iperf.err'"] 
             error = subps.check_output(cmd, stderr=file('iperf.err', 'w'))

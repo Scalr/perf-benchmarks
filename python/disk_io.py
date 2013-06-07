@@ -9,6 +9,8 @@ import paramiko
 import telnetlib
 import traceback
 
+import subprocess as subps
+
 import ec2
 import gce
 
@@ -26,11 +28,11 @@ def disk_io_test(itype, image, region, filesize=1, mode=['randrw'], bs=[1], dept
     if itype in gce.gce_instance_types:
         inst = gce.GCEInst(itype, image, region, os.environ['USER'], '%s/google_compute_engine' % ssh_path)
 
-    inst.launch(disk_size=(filesize + 5))
-
     report = []
     utcnow = datetime.datetime.utcnow()
     time_str = utcnow.strftime('%d:%m:%Y-%H:%M:%S') 
+
+    inst.launch(disk_size=(filesize + 5))
 
     try:
 
@@ -100,16 +102,19 @@ def disk_io_test(itype, image, region, filesize=1, mode=['randrw'], bs=[1], dept
 
     finally:
 
-        report_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../results/disk-io/%s/%s'\
-                                           % (inst.cloud, inst.itype))
-        if not os.path.exists(report_path):
-            os.mkdir(report_path)
-        with open('%s/%s-%s.fiores' % (report_path, time_str, inst.itype), 'a+') as f:
-            f.write(json.dumps(report, indent=4, sort_keys=True))
-            f.write('\n')
-
-        ssh_cli.close()
-        inst.terminate()
+        try:
+            report_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../results/disk-io/%s/%s'\
+                                               % (inst.cloud, inst.itype))
+            if not os.path.exists(report_path):
+                print report_path
+                subps.call('mkdir -p %s'.split() % report_path)
+                #os.mkdir(report_path)
+            with open('%s/%s-%s.fiores' % (report_path, time_str, inst.itype), 'a+') as f:
+                f.write(json.dumps(report, indent=4, sort_keys=True))
+                f.write('\n')
+        finally:
+            ssh_cli.close()
+            inst.terminate()
 
 
 
@@ -141,7 +146,7 @@ if __name__ == '__main__':
         # amazon linux
         ec2_images = {
             'us-east-1':'ami-05355a6c',
-            'us-wets-1':'ami-3ffed17a',
+            'us-west-1':'ami-3ffed17a',
             'us-west-2':'ami-0358ce33',
             'eu-wets-1':'ami-c7c0d6b3'}
     

@@ -33,7 +33,7 @@ def fio_test(filename, filesize, mode, bs, depth, runtime):
 
                     with open('/tmp/fio.conf', 'r') as f:
                         config = f.read()
-                    cmd = 'sudo fio --timeout=%s /tmp/fio.conf' % (runtime + 30)
+                    cmd = 'sudo fio --timeout=%s /tmp/fio.conf' % (runtime + 20)
                     try:
                         out = subps.check_output(cmd, stderr=file('fio.err', 'w'), shell=True)
                         report.append({'datetime':time_str, 'config':config, 'data':out})
