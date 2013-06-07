@@ -64,8 +64,9 @@ def disk_io_test(itype, image, region, filesize=1, mode=['randrw'], bs=[1], dept
         ssh_cli.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         ssh_cli.connect(inst.remote_ip, username=inst.user, key_filename=inst.ssh_key)
         scp_cli = scp.SCPClient(ssh_cli.get_transport())
-        scp_cli.put('fio_conf_generator.py', '/tmp/fio_conf_generator.py')
-        scp_cli.put('fiotest.py', '/tmp/fiotest.py')
+        file_path = os.path.dirname(os.path.abspath(__file__))
+        scp_cli.put('%s/fio_conf_generator.py' % file_path, '/tmp/fio_conf_generator.py')
+        scp_cli.put('%s/fiotest.py' % file_path, '/tmp/fiotest.py')
 
         mode_str = ' '.join(mode)
         bs_str = ' '.join(map(str, bs))

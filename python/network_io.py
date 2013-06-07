@@ -65,9 +65,10 @@ def network_io_test(itype1, image1, region1, itype2, image2, region2, filesize=6
         ssh_cli.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         ssh_cli.connect(inst1.remote_ip, username=inst1.user, key_filename=inst1.ssh_key)
         scp_cli = scp.SCPClient(ssh_cli.get_transport())
-        scp_cli.put('netcattest.py', '/tmp/netcattest.py')
-        scp_cli.put('scptest.py', '/tmp/scptest.py')
-        scp_cli.put('iperftest.py', '/tmp/iperftest.py')
+        file_path = os.path.dirname(os.path.abspath(__file__))
+        scp_cli.put('%s/netcattest.py' % file_path, '/tmp/netcattest.py')
+        scp_cli.put('%s/scptest.py' % file_path, '/tmp/scptest.py')
+        scp_cli.put('%s/iperftest.py' % file_path, '/tmp/iperftest.py')
 
         print '[START TESTS] %s %s <-----> %s %s'\
                 % (inst1.itype, inst1.region, inst2.itype, inst2.region)
