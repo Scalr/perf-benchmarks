@@ -1,0 +1,28 @@
+{
+    "cloud1": "ec2", 
+    "cloud2": "ec2", 
+    "datetime": "07:06:2013 17:28", 
+    "inst1": "m1.small", 
+    "inst2": "m1.small", 
+    "region1": "us-east-1", 
+    "region2": "eu-west-1", 
+    "speed": {
+        "1": "16.2", 
+        "4": "183", 
+        "8": "241"
+    }
+}
+{
+    "cloud1": "ec2", 
+    "cloud2": "ec2", 
+    "datetime": "07:06:2013 17:34", 
+    "inst1": "m1.small", 
+    "inst2": "m1.small", 
+    "region1": "us-east-1", 
+    "region2": "eu-west-1", 
+    "speed": {
+        "1": "17.5", 
+        "4": "72.3", 
+        "8": "222"
+    }
+}

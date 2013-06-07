@@ -1,0 +1,22 @@
+{
+    "cloud1": "gce", 
+    "cloud2": "gce", 
+    "datetime": "07:06:2013 16:57", 
+    "inst1": "n1-highcpu-4", 
+    "inst2": "n1-highcpu-4", 
+    "region1": "us-central1-a", 
+    "region2": "us-central2-a", 
+    "size": 1024, 
+    "time": 29.3
+}
+{
+    "cloud1": "gce", 
+    "cloud2": "gce", 
+    "datetime": "07:06:2013 16:59", 
+    "inst1": "n1-highcpu-4", 
+    "inst2": "n1-highcpu-4", 
+    "region1": "us-central1-a", 
+    "region2": "us-central2-a", 
+    "size": 1024, 
+    "time": 30.44
+}

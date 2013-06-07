@@ -1,0 +1,28 @@
+{
+    "cloud1": "gce", 
+    "cloud2": "gce", 
+    "datetime": "07:06:2013 17:02", 
+    "inst1": "n1-standard-8", 
+    "inst2": "n1-standard-8", 
+    "region1": "us-central1-a", 
+    "region2": "us-central2-a", 
+    "speed": {
+        "1": "623", 
+        "4": "699", 
+        "8": "630"
+    }
+}
+{
+    "cloud1": "gce", 
+    "cloud2": "gce", 
+    "datetime": "07:06:2013 17:03", 
+    "inst1": "n1-standard-8", 
+    "inst2": "n1-standard-8", 
+    "region1": "us-central1-a", 
+    "region2": "us-central2-a", 
+    "speed": {
+        "1": "581", 
+        "4": "728", 
+        "8": "587"
+    }
+}

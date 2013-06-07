@@ -1,0 +1,22 @@
+{
+    "cloud1": "ec2", 
+    "cloud2": "ec2", 
+    "datetime": "07:06:2013 17:14", 
+    "inst1": "c1.medium", 
+    "inst2": "c1.medium", 
+    "region1": "us-west-1", 
+    "region2": "us-west-2", 
+    "size": 1024, 
+    "time": 27.27
+}
+{
+    "cloud1": "ec2", 
+    "cloud2": "ec2", 
+    "datetime": "07:06:2013 17:16", 
+    "inst1": "c1.medium", 
+    "inst2": "c1.medium", 
+    "region1": "us-west-1", 
+    "region2": "us-west-2", 
+    "size": 1024, 
+    "time": 29.95
+}
