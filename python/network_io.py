@@ -92,7 +92,8 @@ def network_io_test(itype1, image1, region1, itype2, image2, region2, filesize=6
                     report.update({'cloud1':inst1.cloud, 'cloud2':inst2.cloud})
                     report_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../results/network-io/netcat')
                     if not os.path.exists(report_path):
-                        subps.call('mkdir -p %s'.split() % report_path)
+                        cmd = 'mkdir -p %s' % report_path
+                        subps.call(cmd.split())
                         #os.mkdir(report_path)
                     with open('%s/%s-%s__%s-%s' % (report_path, inst1.itype, inst1.region, inst2.itype, inst2.region), 'a+') as f:
                         f.write(json.dumps(report, indent=4, sort_keys=True))
@@ -119,7 +120,8 @@ def network_io_test(itype1, image1, region1, itype2, image2, region2, filesize=6
                     report.update({'cloud1':inst1.cloud, 'cloud2':inst2.cloud})
                     report_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../results/network-io/scp')
                     if not os.path.exists(report_path):
-                        subps.call('mkdir -p %s' % report_path)
+                        cmd = 'mkdir -p %s' % report_path
+                        subps.call(cmd.split())
                         #os.mkdir(report_path)
                     with open('%s/%s-%s__%s-%s'.split() % (report_path, inst1.itype, inst1.region, inst2.itype, inst2.region), 'a+') as f:
                         f.write(json.dumps(report, indent=4, sort_keys=True))
@@ -148,7 +150,8 @@ def network_io_test(itype1, image1, region1, itype2, image2, region2, filesize=6
                     report.update({'cloud1':inst1.cloud, 'cloud2':inst2.cloud})
                     report_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../results/network-io/iperf')
                     if not os.path.exists(report_path):
-                        subps.call('mkdir -p %s'.split() % report_path)
+                        cmd = 'mkdir -p %s' % report_path
+                        subps.call(cmd.split())
                         #os.mkdir(report_path)
                     with open('%s/%s-%s__%s-%s' % (report_path, inst1.itype, inst1.region, inst2.itype, inst2.region), 'a+') as f:
                         f.write(json.dumps(report, indent=4, sort_keys=True))

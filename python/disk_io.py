@@ -106,8 +106,8 @@ def disk_io_test(itype, image, region, filesize=1, mode=['randrw'], bs=[1], dept
             report_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../results/disk-io/%s/%s'\
                                                % (inst.cloud, inst.itype))
             if not os.path.exists(report_path):
-                print report_path
-                subps.call('mkdir -p %s'.split() % report_path)
+                cmd = 'mkdir -p %s' % report_path
+                subps.call(cmd.split())
                 #os.mkdir(report_path)
             with open('%s/%s-%s.fiores' % (report_path, time_str, inst.itype), 'a+') as f:
                 f.write(json.dumps(report, indent=4, sort_keys=True))
