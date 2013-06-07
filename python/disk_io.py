@@ -95,6 +95,8 @@ def disk_io_test(itype, image, region, filesize=1, mode=['randrw'], bs=[1], dept
 
         print '[END] fio'
 
+        ssh_cli.close()
+
     except Exception, e:
 
         report.append({'error':str(e)}) 
@@ -113,7 +115,6 @@ def disk_io_test(itype, image, region, filesize=1, mode=['randrw'], bs=[1], dept
                 f.write(json.dumps(report, indent=4, sort_keys=True))
                 f.write('\n')
         finally:
-            ssh_cli.close()
             inst.terminate()
 
 

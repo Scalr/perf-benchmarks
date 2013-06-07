@@ -1,5 +1,7 @@
 
 import re
+import json
+import argparse
 
 
 def parse(data):
@@ -89,8 +91,7 @@ def parse(data):
         def __init__(self, name):
             self.name = name
 
-    tables = [Table('iops'), Table('bw'), Table('slat/avg'), Table('clat/avg'),
-              Table('lat/avg'), Table('aggrb'), Table('minb'), Table('maxb')]
+    tables = [Table('iops'), Table('bw'), Table('lat/avg'), Table('aggrb')]
 
     for test_name, test_data in tests.iteritems():
         for mode, mode_data in test_data.iteritems():
@@ -98,7 +99,7 @@ def parse(data):
                 continue
             for table in tables:
                 if table.name in mode_data.keys():
-                    table.setdefault(mode, {}).setdefault(test_data['bs'], {})[test_data['depth']] = mode_data[table.name]
+                    table.setdefault(test_data['rw'], {}).setdefault(test_data['bs'], {})[test_data['depth']] = mode_data[table.name]
     
     out = ''
 
@@ -126,6 +127,18 @@ def parse(data):
                         row.append(' ')
                 out += '%sk;%s\n' % (bs, ';'.join(row))
 
-    print 'Done'
-
     return out
+
+
+if __name__ == '__main__':
+
+    parser = argparse.ArgumentParser() 
+    parser.add_argument('-f', '--file', help="file")
+
+    args = parser.parse_args()
+
+    with open(args.file, 'r') as f:
+        raw = f.read()
+        data = json.loads(raw)
+        print parse(data)
+

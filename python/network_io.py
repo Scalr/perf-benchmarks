@@ -123,7 +123,7 @@ def network_io_test(itype1, image1, region1, itype2, image2, region2, filesize=6
                         cmd = 'mkdir -p %s' % report_path
                         subps.call(cmd.split())
                         #os.mkdir(report_path)
-                    with open('%s/%s-%s__%s-%s'.split() % (report_path, inst1.itype, inst1.region, inst2.itype, inst2.region), 'a+') as f:
+                    with open('%s/%s-%s__%s-%s' % (report_path, inst1.itype, inst1.region, inst2.itype, inst2.region), 'a+') as f:
                         f.write(json.dumps(report, indent=4, sort_keys=True))
                         f.write('\n')
                     print report['time']
@@ -162,13 +162,13 @@ def network_io_test(itype1, image1, region1, itype2, image2, region2, filesize=6
                     time.sleep(5)
             print '[END] iperf'
 
+        ssh_cli.close()
     except Exception:
 
         print '[EXCEPTION] %s\n' % traceback.print_exc()
 
     finally:
 
-        ssh_cli.close()
         inst1.terminate()
         inst2.terminate()
 

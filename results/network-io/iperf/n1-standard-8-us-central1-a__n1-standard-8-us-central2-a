@@ -26,3 +26,31 @@
         "8": "587"
     }
 }
+{
+    "cloud1": "gce", 
+    "cloud2": "gce", 
+    "datetime": "07:06:2013 21:10", 
+    "inst1": "n1-standard-8", 
+    "inst2": "n1-standard-8", 
+    "region1": "us-central1-a", 
+    "region2": "us-central2-a", 
+    "speed": {
+        "1": "612", 
+        "4": "666", 
+        "8": "626"
+    }
+}
+{
+    "cloud1": "gce", 
+    "cloud2": "gce", 
+    "datetime": "07:06:2013 21:12", 
+    "inst1": "n1-standard-8", 
+    "inst2": "n1-standard-8", 
+    "region1": "us-central1-a", 
+    "region2": "us-central2-a", 
+    "speed": {
+        "1": "615", 
+        "4": "700", 
+        "8": "620"
+    }
+}

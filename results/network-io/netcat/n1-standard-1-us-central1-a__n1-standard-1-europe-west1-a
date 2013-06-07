@@ -20,3 +20,25 @@
     "size": 1024, 
     "time": 67.43
 }
+{
+    "cloud1": "gce", 
+    "cloud2": "gce", 
+    "datetime": "07:06:2013 21:01", 
+    "inst1": "n1-standard-1", 
+    "inst2": "n1-standard-1", 
+    "region1": "us-central1-a", 
+    "region2": "europe-west1-a", 
+    "size": 1024, 
+    "time": 68.49
+}
+{
+    "cloud1": "gce", 
+    "cloud2": "gce", 
+    "datetime": "07:06:2013 21:04", 
+    "inst1": "n1-standard-1", 
+    "inst2": "n1-standard-1", 
+    "region1": "us-central1-a", 
+    "region2": "europe-west1-a", 
+    "size": 1024, 
+    "time": 70.21
+}

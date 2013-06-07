@@ -6,3 +6,7 @@ Session.vim
 .netrwhist
 *~
 
+*.pyc
+
+.ssh
+
