@@ -1,0 +1,98 @@
+[
+    {
+        "cloud": "gce", 
+        "config": "[global]\nclocksource=cpu\nioscheduler=deadline\nramp_time=15\nrandrepeat=0\nioengine=libaio\ndirect=1\n[randwrite-16-1]\nfilename=/dev/sdb\nrw=randwrite\nsize=5120M\nbs=16K\niodepth=1\nruntime=20\nstonewall\n", 
+        "data": "randwrite-16-1: (g=0): rw=randwrite, bs=16K-16K/16K-16K, ioengine=libaio, iodepth=1\nfio 1.59\nStarting 1 process\n\nrandwrite-16-1: (groupid=0, jobs=1): err= 0: pid=3568\n  write: io=178768KB, bw=8937.6KB/s, iops=558 , runt= 20002msec\n    slat (usec): min=9 , max=165 , avg=21.43, stdev= 4.80\n    clat (usec): min=617 , max=9976 , avg=1764.80, stdev=486.94\n     lat (usec): min=639 , max=10000 , avg=1787.78, stdev=486.83\n    bw (KB/s) : min=    0, max= 9024, per=97.60%, avg=8722.27, stdev=1414.72\n  cpu          : usr=0.50%, sys=2.80%, ctx=19651, majf=0, minf=16\n  IO depths    : 1=175.8%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%\n     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%\n     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%\n     issued r/w/d: total=0/11173/0, short=0/0/0\n     lat (usec): 750=7.15%, 1000=5.59%\n     lat (msec): 2=80.05%, 4=6.90%, 10=0.31%\n\nRun status group 0 (all jobs):\n  WRITE: io=178768KB, aggrb=8937KB/s, minb=9152KB/s, maxb=9152KB/s, mint=20002msec, maxt=20002msec\n\nDisk stats (read/write):\n  sdb: ios=83/19537, merge=0/0, ticks=10/33860, in_queue=33870, util=97.07%\n", 
+        "datetime": "08:06:2013 01:04:04", 
+        "instance": "n1-standard-1", 
+        "region": "us-central1-a"
+    }, 
+    {
+        "cloud": "gce", 
+        "config": "[global]\nclocksource=cpu\nioscheduler=deadline\nramp_time=15\nrandrepeat=0\nioengine=libaio\ndirect=1\n[randwrite-16-4]\nfilename=/dev/sdb\nrw=randwrite\nsize=5120M\nbs=16K\niodepth=4\nruntime=20\nstonewall\n", 
+        "data": "randwrite-16-4: (g=0): rw=randwrite, bs=16K-16K/16K-16K, ioengine=libaio, iodepth=4\nfio 1.59\nStarting 1 process\n\nrandwrite-16-4: (groupid=0, jobs=1): err= 0: pid=3591\n  write: io=180592KB, bw=9025.2KB/s, iops=563 , runt= 20008msec\n    slat (usec): min=10 , max=766 , avg=21.23, stdev= 8.46\n    clat (usec): min=896 , max=24031 , avg=7065.94, stdev=859.54\n     lat (usec): min=922 , max=24053 , avg=7088.67, stdev=859.26\n    bw (KB/s) : min=    0, max= 9133, per=97.62%, avg=8810.48, stdev=1429.07\n  cpu          : usr=0.85%, sys=2.45%, ctx=19700, majf=0, minf=16\n  IO depths    : 1=0.1%, 2=0.1%, 4=175.8%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%\n     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%\n     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%\n     issued r/w/d: total=0/11284/0, short=0/0/0\n     lat (usec): 1000=0.02%\n     lat (msec): 2=0.13%, 4=0.49%, 10=98.89%, 20=0.46%, 50=0.04%\n\nRun status group 0 (all jobs):\n  WRITE: io=180592KB, aggrb=9025KB/s, minb=9242KB/s, maxb=9242KB/s, mint=20008msec, maxt=20008msec\n\nDisk stats (read/write):\n  sdb: ios=83/19801, merge=0/0, ticks=10/137930, in_queue=137980, util=98.93%\n", 
+        "datetime": "08:06:2013 01:04:39", 
+        "instance": "n1-standard-1", 
+        "region": "us-central1-a"
+    }, 
+    {
+        "cloud": "gce", 
+        "config": "[global]\nclocksource=cpu\nioscheduler=deadline\nramp_time=15\nrandrepeat=0\nioengine=libaio\ndirect=1\n[randwrite-64-1]\nfilename=/dev/sdb\nrw=randwrite\nsize=5120M\nbs=64K\niodepth=1\nruntime=20\nstonewall\n", 
+        "data": "randwrite-64-1: (g=0): rw=randwrite, bs=64K-64K/64K-64K, ioengine=libaio, iodepth=1\nfio 1.59\nStarting 1 process\n\nrandwrite-64-1: (groupid=0, jobs=1): err= 0: pid=3629\n  write: io=590272KB, bw=29512KB/s, iops=461 , runt= 20001msec\n    slat (usec): min=20 , max=618 , avg=24.32, stdev= 7.08\n    clat (usec): min=302 , max=10752 , avg=2140.27, stdev=586.04\n     lat (usec): min=950 , max=10777 , avg=2166.26, stdev=585.51\n    bw (KB/s) : min=    0, max=29696, per=97.58%, avg=28799.18, stdev=4670.58\n  cpu          : usr=0.60%, sys=2.40%, ctx=16239, majf=0, minf=16\n  IO depths    : 1=175.9%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%\n     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%\n     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%\n     issued r/w/d: total=0/9223/0, short=0/0/0\n     lat (usec): 500=0.02%, 1000=0.38%\n     lat (msec): 2=17.94%, 4=80.66%, 10=1.00%, 20=0.01%\n\nRun status group 0 (all jobs):\n  WRITE: io=590272KB, aggrb=29512KB/s, minb=30220KB/s, maxb=30220KB/s, mint=20001msec, maxt=20001msec\n\nDisk stats (read/write):\n  sdb: ios=83/16149, merge=0/0, ticks=30/34230, in_queue=34270, util=98.25%\n", 
+        "datetime": "08:06:2013 01:05:14", 
+        "instance": "n1-standard-1", 
+        "region": "us-central1-a"
+    }, 
+    {
+        "cloud": "gce", 
+        "config": "[global]\nclocksource=cpu\nioscheduler=deadline\nramp_time=15\nrandrepeat=0\nioengine=libaio\ndirect=1\n[randwrite-64-4]\nfilename=/dev/sdb\nrw=randwrite\nsize=5120M\nbs=64K\niodepth=4\nruntime=20\nstonewall\n", 
+        "data": "randwrite-64-4: (g=0): rw=randwrite, bs=64K-64K/64K-64K, ioengine=libaio, iodepth=4\nfio 1.59\nStarting 1 process\n\nrandwrite-64-4: (groupid=0, jobs=1): err= 0: pid=3648\n  write: io=590464KB, bw=29508KB/s, iops=460 , runt= 20010msec\n    slat (usec): min=6 , max=484 , avg=24.36, stdev= 6.40\n    clat (msec): min=1 , max=28 , avg= 8.65, stdev= 1.16\n     lat (msec): min=1 , max=28 , avg= 8.67, stdev= 1.16\n    bw (KB/s) : min=    0, max=29824, per=97.59%, avg=28795.67, stdev=4670.68\n  cpu          : usr=0.60%, sys=2.40%, ctx=16035, majf=0, minf=16\n  IO depths    : 1=0.1%, 2=0.1%, 4=175.9%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%\n     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%\n     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%\n     issued r/w/d: total=0/9223/0, short=0/0/0\n\n     lat (msec): 2=0.13%, 4=0.47%, 10=96.56%, 20=2.82%, 50=0.07%\n\nRun status group 0 (all jobs):\n  WRITE: io=590464KB, aggrb=29508KB/s, minb=30216KB/s, maxb=30216KB/s, mint=20010msec, maxt=20010msec\n\nDisk stats (read/write):\n  sdb: ios=83/16191, merge=0/0, ticks=30/138020, in_queue=138090, util=98.92%\n", 
+        "datetime": "08:06:2013 01:05:49", 
+        "instance": "n1-standard-1", 
+        "region": "us-central1-a"
+    }, 
+    {
+        "cloud": "gce", 
+        "config": "[global]\nclocksource=cpu\nioscheduler=deadline\nramp_time=15\nrandrepeat=0\nioengine=libaio\ndirect=1\n[randwrite-128-1]\nfilename=/dev/sdb\nrw=randwrite\nsize=5120M\nbs=128K\niodepth=1\nruntime=20\nstonewall\n", 
+        "data": "randwrite-128-1: (g=0): rw=randwrite, bs=128K-128K/128K-128K, ioengine=libaio, iodepth=1\nfio 1.59\nStarting 1 process\n\nrandwrite-128-1: (groupid=0, jobs=1): err= 0: pid=3680\n  write: io=948992KB, bw=47445KB/s, iops=370 , runt= 20002msec\n    slat (usec): min=23 , max=195 , avg=28.20, stdev= 5.62\n    clat (usec): min=1417 , max=9019 , avg=2665.56, stdev=649.31\n     lat (usec): min=1444 , max=9047 , avg=2695.40, stdev=649.03\n    bw (KB/s) : min=    0, max=47872, per=97.59%, avg=46300.00, stdev=7509.94\n  cpu          : usr=0.65%, sys=2.00%, ctx=13051, majf=0, minf=16\n  IO depths    : 1=175.8%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%\n     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%\n     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%\n     issued r/w/d: total=0/7414/0, short=0/0/0\n\n     lat (msec): 2=17.74%, 4=80.37%, 10=1.90%\n\nRun status group 0 (all jobs):\n  WRITE: io=948992KB, aggrb=47444KB/s, minb=48583KB/s, maxb=48583KB/s, mint=20002msec, maxt=20002msec\n\nDisk stats (read/write):\n  sdb: ios=83/12973, merge=0/0, ticks=70/34160, in_queue=34240, util=98.13%\n", 
+        "datetime": "08:06:2013 01:06:24", 
+        "instance": "n1-standard-1", 
+        "region": "us-central1-a"
+    }, 
+    {
+        "cloud": "gce", 
+        "config": "[global]\nclocksource=cpu\nioscheduler=deadline\nramp_time=15\nrandrepeat=0\nioengine=libaio\ndirect=1\n[randwrite-128-4]\nfilename=/dev/sdb\nrw=randwrite\nsize=5120M\nbs=128K\niodepth=4\nruntime=20\nstonewall\n", 
+        "data": "randwrite-128-4: (g=0): rw=randwrite, bs=128K-128K/128K-128K, ioengine=libaio, iodepth=4\nfio 1.59\nStarting 1 process\n\nrandwrite-128-4: (groupid=0, jobs=1): err= 0: pid=3703\n  write: io=950272KB, bw=47487KB/s, iops=370 , runt= 20011msec\n    slat (usec): min=10 , max=1559 , avg=28.25, stdev=20.84\n    clat (msec): min=2 , max=24 , avg=10.75, stdev= 1.39\n     lat (msec): min=2 , max=24 , avg=10.78, stdev= 1.39\n    bw (KB/s) : min=    0, max=48128, per=97.59%, avg=46341.82, stdev=7516.74\n  cpu          : usr=0.70%, sys=1.95%, ctx=12862, majf=0, minf=16\n  IO depths    : 1=0.1%, 2=0.1%, 4=175.9%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%\n     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%\n     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%\n     issued r/w/d: total=0/7421/0, short=0/0/0\n\n     lat (msec): 4=0.18%, 10=13.08%, 20=86.66%, 50=0.13%\n\nRun status group 0 (all jobs):\n  WRITE: io=950272KB, aggrb=47487KB/s, minb=48627KB/s, maxb=48627KB/s, mint=20011msec, maxt=20011msec\n\nDisk stats (read/write):\n  sdb: ios=83/12961, merge=0/0, ticks=60/137260, in_queue=137360, util=98.98%\n", 
+        "datetime": "08:06:2013 01:06:59", 
+        "instance": "n1-standard-1", 
+        "region": "us-central1-a"
+    }, 
+    {
+        "cloud": "gce", 
+        "config": "[global]\nclocksource=cpu\nioscheduler=deadline\nramp_time=15\nrandrepeat=0\nioengine=libaio\ndirect=1\n[randread-16-1]\nfilename=/dev/sdb\nrw=randread\nsize=5120M\nbs=16K\niodepth=1\nruntime=20\nstonewall\n", 
+        "data": "randread-16-1: (g=0): rw=randread, bs=16K-16K/16K-16K, ioengine=libaio, iodepth=1\nfio 1.59\nStarting 1 process\n\nrandread-16-1: (groupid=0, jobs=1): err= 0: pid=3741\n  read : io=27952KB, bw=1396.6KB/s, iops=87 , runt= 20015msec\n    slat (usec): min=15 , max=353 , avg=20.66, stdev= 7.91\n    clat (usec): min=109 , max=99654 , avg=11434.21, stdev=9322.84\n     lat (usec): min=127 , max=99676 , avg=11456.20, stdev=9322.95\n    bw (KB/s) : min=    0, max= 1897, per=97.70%, avg=1363.92, stdev=287.35\n  cpu          : usr=0.15%, sys=0.35%, ctx=3071, majf=0, minf=22\n  IO depths    : 1=175.7%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%\n     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%\n     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%\n     issued r/w/d: total=1747/0/0, short=0/0/0\n     lat (usec): 250=26.10%, 500=0.06%, 750=0.06%, 1000=2.46%\n     lat (msec): 2=1.55%, 4=1.60%, 10=8.47%, 20=44.42%, 50=15.23%\n     lat (msec): 100=0.11%\n\nRun status group 0 (all jobs):\n   READ: io=27952KB, aggrb=1396KB/s, minb=1430KB/s, maxb=1430KB/s, mint=20015msec, maxt=20015msec\n\nDisk stats (read/write):\n  sdb: ios=3067/0, merge=0/0, ticks=34600/0, in_queue=34620, util=98.87%\n", 
+        "datetime": "08:06:2013 01:07:34", 
+        "instance": "n1-standard-1", 
+        "region": "us-central1-a"
+    }, 
+    {
+        "cloud": "gce", 
+        "config": "[global]\nclocksource=cpu\nioscheduler=deadline\nramp_time=15\nrandrepeat=0\nioengine=libaio\ndirect=1\n[randread-16-4]\nfilename=/dev/sdb\nrw=randread\nsize=5120M\nbs=16K\niodepth=4\nruntime=20\nstonewall\n", 
+        "data": "randread-16-4: (g=0): rw=randread, bs=16K-16K/16K-16K, ioengine=libaio, iodepth=4\nfio 1.59\nStarting 1 process\n\nrandread-16-4: (groupid=0, jobs=1): err= 0: pid=3770\n  read : io=73984KB, bw=3693.2KB/s, iops=230 , runt= 20033msec\n    slat (usec): min=9 , max=339 , avg=19.75, stdev= 5.80\n    clat (usec): min=117 , max=95453 , avg=17304.66, stdev=10254.21\n     lat (usec): min=136 , max=95487 , avg=17325.80, stdev=10254.19\n    bw (KB/s) : min=    0, max= 3800, per=97.63%, avg=3605.48, stdev=586.33\n  cpu          : usr=0.15%, sys=1.10%, ctx=7863, majf=0, minf=34\n  IO depths    : 1=0.1%, 2=0.1%, 4=175.7%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%\n     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%\n     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%\n     issued r/w/d: total=4621/0/0, short=0/0/0\n     lat (usec): 250=3.94%, 500=0.26%, 750=0.09%, 1000=0.32%\n     lat (msec): 2=1.93%, 4=3.68%, 10=17.87%, 20=30.38%, 50=41.10%\n     lat (msec): 100=0.52%\n\nRun status group 0 (all jobs):\n   READ: io=73984KB, aggrb=3693KB/s, minb=3781KB/s, maxb=3781KB/s, mint=20033msec, maxt=20033msec\n\nDisk stats (read/write):\n  sdb: ios=8078/0, merge=0/0, ticks=137850/0, in_queue=137920, util=98.92%\n", 
+        "datetime": "08:06:2013 01:08:09", 
+        "instance": "n1-standard-1", 
+        "region": "us-central1-a"
+    }, 
+    {
+        "cloud": "gce", 
+        "config": "[global]\nclocksource=cpu\nioscheduler=deadline\nramp_time=15\nrandrepeat=0\nioengine=libaio\ndirect=1\n[randread-64-1]\nfilename=/dev/sdb\nrw=randread\nsize=5120M\nbs=64K\niodepth=1\nruntime=20\nstonewall\n", 
+        "data": "randread-64-1: (g=0): rw=randread, bs=64K-64K/64K-64K, ioengine=libaio, iodepth=1\nfio 1.59\nStarting 1 process\n\nrandread-64-1: (groupid=0, jobs=1): err= 0: pid=3832\n  read : io=92224KB, bw=4608.1KB/s, iops=72 , runt= 20010msec\n    slat (usec): min=17 , max=414 , avg=21.40, stdev= 8.50\n    clat (usec): min=115 , max=77571 , avg=13860.13, stdev=9218.12\n     lat (usec): min=135 , max=77592 , avg=13882.66, stdev=9217.99\n    bw (KB/s) : min=    0, max= 6349, per=97.51%, avg=4493.27, stdev=899.22\n  cpu          : usr=0.05%, sys=0.35%, ctx=2483, majf=0, minf=34\n  IO depths    : 1=172.2%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%\n     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%\n     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%\n     issued r/w/d: total=1441/0/0, short=0/0/0\n     lat (usec): 250=19.22%, 750=0.07%, 1000=0.07%\n     lat (msec): 2=0.35%, 4=0.35%, 10=6.52%, 20=53.23%, 50=19.85%\n     lat (msec): 100=0.42%\n\nRun status group 0 (all jobs):\n   READ: io=92224KB, aggrb=4608KB/s, minb=4719KB/s, maxb=4719KB/s, mint=20010msec, maxt=20010msec\n\nDisk stats (read/write):\n  sdb: ios=2465/0, merge=0/0, ticks=34330/0, in_queue=34340, util=98.44%\n", 
+        "datetime": "08:06:2013 01:08:44", 
+        "instance": "n1-standard-1", 
+        "region": "us-central1-a"
+    }, 
+    {
+        "cloud": "gce", 
+        "config": "[global]\nclocksource=cpu\nioscheduler=deadline\nramp_time=15\nrandrepeat=0\nioengine=libaio\ndirect=1\n[randread-64-4]\nfilename=/dev/sdb\nrw=randread\nsize=5120M\nbs=64K\niodepth=4\nruntime=20\nstonewall\n", 
+        "data": "randread-64-4: (g=0): rw=randread, bs=64K-64K/64K-64K, ioengine=libaio, iodepth=4\nfio 1.59\nStarting 1 process\n\nrandread-64-4: (groupid=0, jobs=1): err= 0: pid=3861\n  read : io=270720KB, bw=13529KB/s, iops=211 , runt= 20010msec\n    slat (usec): min=10 , max=311 , avg=21.12, stdev= 6.83\n    clat (usec): min=119 , max=79927 , avg=18909.70, stdev=10429.19\n     lat (usec): min=139 , max=79949 , avg=18932.26, stdev=10429.11\n    bw (KB/s) : min=    0, max=14222, per=97.58%, avg=13200.92, stdev=2152.89\n  cpu          : usr=0.05%, sys=1.15%, ctx=7079, majf=0, minf=82\n  IO depths    : 1=0.1%, 2=0.1%, 4=175.8%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%\n     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%\n     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%\n     issued r/w/d: total=4227/0/0, short=0/0/0\n     lat (usec): 250=3.74%, 500=0.28%, 750=0.07%, 1000=0.02%\n     lat (msec): 2=1.40%, 4=2.60%, 10=12.89%, 20=32.65%, 50=45.35%\n     lat (msec): 100=1.09%\n\nRun status group 0 (all jobs):\n   READ: io=270720KB, aggrb=13529KB/s, minb=13853KB/s, maxb=13853KB/s, mint=20010msec, maxt=20010msec\n\nDisk stats (read/write):\n  sdb: ios=7394/0, merge=0/0, ticks=137720/0, in_queue=137790, util=98.89%\n", 
+        "datetime": "08:06:2013 01:09:19", 
+        "instance": "n1-standard-1", 
+        "region": "us-central1-a"
+    }, 
+    {
+        "cloud": "gce", 
+        "config": "[global]\nclocksource=cpu\nioscheduler=deadline\nramp_time=15\nrandrepeat=0\nioengine=libaio\ndirect=1\n[randread-128-1]\nfilename=/dev/sdb\nrw=randread\nsize=5120M\nbs=128K\niodepth=1\nruntime=20\nstonewall\n", 
+        "data": "randread-128-1: (g=0): rw=randread, bs=128K-128K/128K-128K, ioengine=libaio, iodepth=1\nfio 1.59\nStarting 1 process\n\nrandread-128-1: (groupid=0, jobs=1): err= 0: pid=3873\n  read : io=144384KB, bw=7213.7KB/s, iops=56 , runt= 20017msec\n    slat (usec): min=18 , max=493 , avg=23.21, stdev=11.41\n    clat (usec): min=122 , max=77329 , avg=17729.15, stdev=8816.73\n     lat (usec): min=144 , max=77353 , avg=17753.31, stdev=8816.67\n    bw (KB/s) : min=    0, max= 8960, per=97.62%, avg=7041.62, stdev=1343.24\n  cpu          : usr=0.10%, sys=0.25%, ctx=2015, majf=0, minf=50\n  IO depths    : 1=178.5%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%\n     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%\n     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%\n     issued r/w/d: total=1128/0/0, short=0/0/0\n     lat (usec): 250=6.65%\n     lat (msec): 2=0.35%, 4=0.62%, 10=4.70%, 20=54.26%, 50=32.89%\n     lat (msec): 100=0.62%\n\nRun status group 0 (all jobs):\n   READ: io=144384KB, aggrb=7213KB/s, minb=7386KB/s, maxb=7386KB/s, mint=20017msec, maxt=20017msec\n\nDisk stats (read/write):\n  sdb: ios=2006/0, merge=0/0, ticks=34500/0, in_queue=34520, util=98.78%\n", 
+        "datetime": "08:06:2013 01:09:54", 
+        "instance": "n1-standard-1", 
+        "region": "us-central1-a"
+    }, 
+    {
+        "cloud": "gce", 
+        "config": "[global]\nclocksource=cpu\nioscheduler=deadline\nramp_time=15\nrandrepeat=0\nioengine=libaio\ndirect=1\n[randread-128-4]\nfilename=/dev/sdb\nrw=randread\nsize=5120M\nbs=128K\niodepth=4\nruntime=20\nstonewall\n", 
+        "data": "randread-128-4: (g=0): rw=randread, bs=128K-128K/128K-128K, ioengine=libaio, iodepth=4\nfio 1.59\nStarting 1 process\n\nrandread-128-4: (groupid=0, jobs=1): err= 0: pid=3902\n  read : io=486784KB, bw=24309KB/s, iops=189 , runt= 20025msec\n    slat (usec): min=11 , max=522 , avg=22.81, stdev= 9.80\n    clat (usec): min=125 , max=96712 , avg=21038.79, stdev=10288.37\n     lat (usec): min=147 , max=96736 , avg=21062.90, stdev=10288.26\n    bw (KB/s) : min=    0, max=25192, per=97.60%, avg=23725.18, stdev=3865.41\n  cpu          : usr=0.20%, sys=0.95%, ctx=6279, majf=0, minf=146\n  IO depths    : 1=0.1%, 2=0.1%, 4=175.7%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%\n     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%\n     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%\n     issued r/w/d: total=3800/0/0, short=0/0/0\n     lat (usec): 250=2.58%, 500=0.11%, 750=0.05%\n     lat (msec): 2=0.63%, 4=2.08%, 10=5.63%, 20=36.21%, 50=51.50%\n     lat (msec): 100=1.32%\n\nRun status group 0 (all jobs):\n   READ: io=486784KB, aggrb=24308KB/s, minb=24892KB/s, maxb=24892KB/s, mint=20025msec, maxt=20025msec\n\nDisk stats (read/write):\n  sdb: ios=6678/0, merge=0/0, ticks=138280/0, in_queue=138320, util=98.61%\n", 
+        "datetime": "08:06:2013 01:10:29", 
+        "instance": "n1-standard-1", 
+        "region": "us-central1-a"
+    }
+]

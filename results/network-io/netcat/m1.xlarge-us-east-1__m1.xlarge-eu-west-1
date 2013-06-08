@@ -42,3 +42,25 @@
     "size": 1024, 
     "time": 119.14
 }
+{
+    "cloud1": "ec2", 
+    "cloud2": "ec2", 
+    "datetime": "08:06:2013 01:04", 
+    "inst1": "m1.xlarge", 
+    "inst2": "m1.xlarge", 
+    "region1": "us-east-1", 
+    "region2": "eu-west-1", 
+    "size": 1024, 
+    "time": 53.44
+}
+{
+    "cloud1": "ec2", 
+    "cloud2": "ec2", 
+    "datetime": "08:06:2013 01:06", 
+    "inst1": "m1.xlarge", 
+    "inst2": "m1.xlarge", 
+    "region1": "us-east-1", 
+    "region2": "eu-west-1", 
+    "size": 1024, 
+    "time": 54.44
+}

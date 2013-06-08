@@ -54,3 +54,31 @@
         "8": "74.8"
     }
 }
+{
+    "cloud1": "ec2", 
+    "cloud2": "ec2", 
+    "datetime": "08:06:2013 01:27", 
+    "inst1": "m1.small", 
+    "inst2": "m1.small", 
+    "region1": "us-east-1", 
+    "region2": "eu-west-1", 
+    "speed": {
+        "1": "53.8", 
+        "4": "101", 
+        "8": "120"
+    }
+}
+{
+    "cloud1": "ec2", 
+    "cloud2": "ec2", 
+    "datetime": "08:06:2013 01:33", 
+    "inst1": "m1.small", 
+    "inst2": "m1.small", 
+    "region1": "us-east-1", 
+    "region2": "eu-west-1", 
+    "speed": {
+        "1": "51.9", 
+        "4": "216", 
+        "8": "238"
+    }
+}
