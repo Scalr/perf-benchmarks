@@ -77,7 +77,7 @@ def disk_io_test(itype, image, region, filesize=1, mode=['randrw'], bs=[1], dept
         stdin, stdout, stderr = ssh_cli.exec_command('python2.7 /tmp/fiotest.py -f %s -s %s -m %s -b %s -d %s -t %s'
                 % ('/dev/sdb', filesize * 1024, mode_str, bs_str, depth_str, runtime))
 
-        for _ in range((120 * len(mode) * len(bs) * len(depth) + 60) / 5):
+        for _ in range(((runtime + 30) * len(mode) * len(bs) * len(depth) + 10) / 5):
             stdin, stdout, stderr = ssh_cli.exec_command('[ -s fio.report ]; echo $?')
             out = stdout.read()
             if out.strip() == '0':
